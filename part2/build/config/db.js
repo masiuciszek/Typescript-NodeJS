@@ -40,29 +40,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
-var MONGO_URI = 'mongodb://10.0.0.129:27017/ts-server';
-var connectMongoDb = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var err_1;
+var uri = 'mongodb://10.0.0.129:27017/ts-server';
+var conn = null;
+exports.connectMongoDb = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, mongoose_1.default.connect(MONGO_URI, {
+                if (!(conn == null)) return [3 /*break*/, 2];
+                return [4 /*yield*/, mongoose_1.default.createConnection(uri, {
+                        bufferCommands: false,
+                        bufferMaxEntries: 0,
                         useNewUrlParser: true,
+                        useUnifiedTopology: true,
                         useCreateIndex: true,
-                        useFindAndModify: false,
                     })];
             case 1:
-                _a.sent();
-                console.log('MongoDB Connected...');
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                console.error(err_1.message);
-                process.exit(1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                conn = _a.sent();
+                _a.label = 2;
+            case 2: return [2 /*return*/, conn];
         }
     });
 }); };
-exports.default = connectMongoDb;
