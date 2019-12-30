@@ -5,7 +5,7 @@ import { router } from './routes/login';
 import { connectMongoDb } from './config/db';
 
 const app: Application = express();
-const port = 5000;
+const port: number = 5000;
 
 // connectMongoDb();
 

@@ -1,7 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { Router, Request, Response } from 'express';
 
+@controller('/')
 class LoginController {
+  @get('/login')
   getLogin(req: Request, res: Response): void {
     res.send(`
     <form method="post" action="/login">
