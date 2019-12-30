@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Router, Request, Response } from 'express';
+import { get } from './decoraters/routes';
 
 @controller('/')
 class LoginController {
