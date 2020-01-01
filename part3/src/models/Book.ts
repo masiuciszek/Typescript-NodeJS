@@ -9,11 +9,16 @@ export interface FieldsType {
   author: string | null;
 }
 
+export type BookDocument = mongoose.Document & {
+  title: string;
+  author: string;
+};
+
 export const BookSchema = new mongoose.Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
 });
 
-const Book = mongoose.model('Book', BookSchema);
+const Book = mongoose.model<BookDocument>('Book', BookSchema);
 
 export default Book;
