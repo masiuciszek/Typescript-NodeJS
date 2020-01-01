@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const uri: string = 'mongodb://127.0.0.0.1:27017/ts-db';
+const uri: string = 'mongodb://127.0.0.1:27017/ts-db';
 
 export const connectDB = () => {
   mongoose
