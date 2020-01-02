@@ -1,4 +1,7 @@
 import NodeGeocoder from 'node-geocoder';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 interface GeocoderOptions {
   provider: string | undefined;

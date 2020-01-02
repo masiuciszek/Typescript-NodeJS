@@ -1,4 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { NextFunction } from 'express';
+import { geocoder } from '../utils/geocoder';
 
 export interface IStore extends Document {
   storeId: string;
@@ -36,6 +38,22 @@ const storeSchema: Schema = new Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+// run before it gets saved in the DB
+storeSchema.pre<IStore>('save', async function(next: NextFunction) {
+  const locationValue = await geocoder.geocode(this.address);
+  const { longitude, latitude, formattedAddress } = locationValue[0];
+
+  this.location = {
+    type: 'Point',
+    coordinates: [longitude, latitude],
+    formattedAddress,
+  };
+
+  // prevent to store the address in db
+  this.address = undefined;
+  next();
 });
 
 export default mongoose.model<IStore>('Store', storeSchema);
