@@ -39,27 +39,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var Store_1 = __importDefault(require("../models/Store"));
-exports.getStores = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
-    var stores, err_1;
+var mongoose_1 = __importDefault(require("mongoose"));
+var uri = 'mongodb://127.0.0.1:27017/ts-db-stores';
+exports.connectDb = function () { return __awaiter(_this, void 0, void 0, function () {
+    var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Store_1.default.find()];
-            case 1:
-                stores = _a.sent();
-                if (!stores)
-                    return [2 /*return*/, res.status(401).json({ msg: 'no stores found' })];
-                return [2 /*return*/, res.status(200).json({
-                        success: true,
-                        count: stores.length,
-                        data: stores,
+                return [4 /*yield*/, mongoose_1.default.connect(uri, {
+                        useNewUrlParser: true,
+                        useCreateIndex: true,
+                        useFindAndModify: false,
+                        useUnifiedTopology: true,
                     })];
+            case 1:
+                _a.sent();
+                console.log("MongoDB is connected");
+                return [3 /*break*/, 3];
             case 2:
-                err_1 = _a.sent();
-                console.error(err_1.message);
-                res.status(500).json({ errMsg: 'Server error' });
+                error_1 = _a.sent();
+                process.exit(1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
