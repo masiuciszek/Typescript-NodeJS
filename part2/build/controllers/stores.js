@@ -65,3 +65,31 @@ exports.getStores = function (req, res, next) { return __awaiter(_this, void 0, 
         }
     });
 }); };
+// @desc  Add store
+// @route Post /
+// @access Public
+exports.addStore = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+    var store, err_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, Store_1.default.create(req.body)];
+            case 1:
+                store = _a.sent();
+                return [2 /*return*/, res.status(200).json({
+                        success: true,
+                        data: store,
+                    })];
+            case 2:
+                err_2 = _a.sent();
+                console.error(err_2.message);
+                if (err_2.code === 11000) {
+                    return [2 /*return*/, res.status(400).json({ errMsg: 'User error' })];
+                }
+                res.status(500).json({ errMsg: 'Server error' });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };

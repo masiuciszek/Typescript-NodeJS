@@ -7,4 +7,7 @@ var express_1 = __importDefault(require("express"));
 var stores_1 = require("../controllers/stores");
 var router = express_1.default.Router();
 exports.router = router;
-router.get('/', stores_1.getStores);
+router
+    .route('/stores')
+    .get(stores_1.getStores)
+    .post(stores_1.addStore);

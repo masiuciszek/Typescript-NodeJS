@@ -76,6 +76,13 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
+"@types/node-geocoder@^3.24.1":
+  version "3.24.1"
+  resolved "https://registry.yarnpkg.com/@types/node-geocoder/-/node-geocoder-3.24.1.tgz#b6ec7e39453e0c3744736197b33350c4a568d587"
+  integrity sha512-NpkCX6ooS3Fc6fjVVCWUDcq7/0siDU6zVu+Q29neHLXOGkRc9VmLvLTl3yeaDRatdpAjkD9O7hOY67zrf7WP9w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   version "13.1.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.2.tgz#fe94285bf5e0782e1a9e5a8c482b1c34465fa385"
