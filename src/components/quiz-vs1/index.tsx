@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import produce from "immer"
 import { useState } from "react"
+import { colors, elevations, resetBtnStyles } from "../../styles/common"
 
 const questions = [
   {
@@ -32,10 +33,43 @@ const questions = [
   },
 ]
 const QuizWrapper = styled.section`
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
 `
 
-const QuizBox = styled.div``
+const QuizBox = styled.div`
+  padding: 0.5em;
+  max-width: 800px;
+  margin: 0 auto 0.5em;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  min-height: 12rem;
+  border-radius: 4px;
+  box-shadow: ${elevations.shadowM};
+`
+
+const QuestionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    border-bottom: 2px solid ${colors.accent};
+  }
+`
+
+const QuizList = styled.ul`
+  padding: 0;
+  display: flex;
+  flex-flow: column wrap;
+  li {
+    flex: 1;
+    display: flex;
+    height: 3rem;
+    margin-bottom: 0.25em;
+    button {
+      ${resetBtnStyles};
+      flex: 1 0 100%;
+    }
+  }
+`
 
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -58,12 +92,14 @@ const Quiz = () => {
     <QuizWrapper>
       {isEnd && (
         <p>
-          you scored {score} out of {questions.length}{" "}
+          you scored {score} out of {questions.length}
         </p>
       )}
       <QuizBox>
-        <p>{questions[currentQuestion].question}</p>
-        <ul>
+        <QuestionWrapper>
+          <p>{questions[currentQuestion].question}</p>
+        </QuestionWrapper>
+        <QuizList>
           {questions[currentQuestion].answers.map(({ text, isCorrect }) => (
             <li key={text}>
               <button type="button" onClick={() => handleClick(isCorrect)}>
@@ -71,7 +107,7 @@ const Quiz = () => {
               </button>
             </li>
           ))}
-        </ul>
+        </QuizList>
       </QuizBox>
     </QuizWrapper>
   )
