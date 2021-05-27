@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from "react"
+import Routes from "./routes"
+import styled from "@emotion/styled"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Main = styled.main`
+  border: 1px solid #000;
+  max-width: 900px;
+  margin: auto;
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+`
+
+const Layout: FC = ({ children }) => {
+  return <Main>{children}</Main>
 }
 
-export default App;
+const App = () => (
+  <Layout>
+    <Routes />
+  </Layout>
+)
+
+export default App

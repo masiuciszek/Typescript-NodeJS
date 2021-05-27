@@ -1,10 +1,11 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  max-width: 900px;
+  min-height: 100vh;
+  display: grid;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +14,67 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.game {
+  border: 1px solid #000;
+  width: 40em;
+  margin: 0 auto;
+}
+.game .header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  padding: 0.5em;
+  border: 1px solid red;
+  min-height: 3rem;
+}
+.header .col {
+  border: 1px solid #000;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.game .row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul {
+  list-style: none;
+}
+
+.question {
+  border: 1px solid #000;
+}
+
+.btn-list {
+  display: flex;
+  border: 1px solid red;
+  height: 3.5em;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  flex: 1;
+}
+
+.btn-list li {
+  border: 1px solid red;
+  height: 100%;
+  align-self: center;
+  flex: 1;
+}
+.btn-list li button {
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  text-align: center;
+}
+
+button span {
+  display: inline-block;
+  margin: 0 auto;
 }
