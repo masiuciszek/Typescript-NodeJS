@@ -30,4 +30,6 @@ export const resetBtnStyles = css`
   border: 2px solid ${colors.text};
   color: ${colors.text};
   box-shadow: ${elevations.shadowM};
+  font-size: 1.1rem;
+  /* transition: 300ms all ease-in-out; */
 `

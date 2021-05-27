@@ -4,7 +4,6 @@ import styled from "@emotion/styled"
 import { Global, css } from "@emotion/react"
 
 const Main = styled.main`
-  border: 1px solid #000;
   max-width: 900px;
   margin: auto;
   min-height: 100vh;
