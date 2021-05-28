@@ -19,8 +19,11 @@ const GlobalStyles = () => {
           --dark-purp: #514762;
           --white: #fff;
           --red: #e64c4c;
+          --red-shadow: rgba(230, 76, 76, 0.6);
           --light-blue: #83d8d8;
+          --light-blue-shadow: rgba(131, 216, 216, 0.6);
           --green: #cbe56c;
+          --green-shadow: rgba(203, 229, 108, 0.6);
           --dark-shadow: #4d4d4d;
           --dark: #383243;
           --blue: #3f51b5;
@@ -37,12 +40,15 @@ const GlobalStyles = () => {
           --sh-outline: 0 0 0 3px rgba(66, 153, 225, 0.5);
 
           --primary: var(--blue);
-          --primaryHighlight: var(--darkPurp-10);
           --accent: var(--light-blue);
           --warning: var(--green);
           --danger: var(--red);
           --text: var(--white);
           --bg: var(--dark-purp);
+
+          --accent-shadow: var(--light-blue-shadow);
+          --danger-shadow: var(--red-shadow);
+          --warning-shadow: var(--green-shadow);
         }
 
         *::before,
@@ -101,6 +107,9 @@ const GlobalStyles = () => {
         }
         ul {
           list-style: none;
+        }
+        a {
+          text-decoration: none;
         }
       `}
     />

@@ -2,12 +2,14 @@ import { css } from "@emotion/react"
 
 export const colors = {
   primary: "var(--primary)",
-  primaryHighlight: "var(--primaryHighlight)",
   accent: "var(--accent)",
   warning: "var(--warning)",
   danger: "var(--danger)",
   text: "var(--text)",
   bg: "var(--bg)",
+  accentShadow: "var(--accent-shadow)",
+  dangerShadow: "var(--danger-shadow)",
+  warningShadow: "var(--warning-shadow)",
 } as const
 
 export const elevations = {
@@ -30,6 +32,7 @@ export const resetBtnStyles = css`
   border: 2px solid ${colors.text};
   color: ${colors.text};
   box-shadow: ${elevations.shadowM};
-  font-size: 1.1rem;
-  /* transition: 300ms all ease-in-out; */
+  font-size: 1rem;
+  padding: 0.2em;
+  font-family: "Montserrat Alternates", sans-serif;
 `
