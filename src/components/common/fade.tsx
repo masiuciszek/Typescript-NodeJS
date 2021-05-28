@@ -1,14 +1,11 @@
 import { cx } from "@emotion/css"
 import { AnimatePresence, motion } from "framer-motion"
 import React from "react"
+import { AnimatedOptions } from "../../types"
 
 interface Props {
   isAnimated: boolean
-  options?: {
-    initial?: Record<string, number | string>
-    animate?: Record<string, number | string>
-    exit?: Record<string, number | string>
-  }
+  options?: AnimatedOptions
   className?: string
 }
 
