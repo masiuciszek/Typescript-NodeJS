@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useReducer } from "react"
 import { Fade } from "../common/fade"
+import produce from "immer"
 
 const questions = [
   {
@@ -29,35 +30,35 @@ interface State {
   isGameDone: boolean
 }
 
-interface SelectOptionPayload {
-  isCorrect: boolean
-  nextQuestion: number
-}
-
 type Action =
   | { type: "SET_CURRENT_QUESTION" }
-  | { type: "SELECT_OPTION"; payload: SelectOptionPayload }
+  | { type: "SELECT_OPTION"; payload: number }
   | { type: "END_GAME" }
+  | { type: "INCREMENT_SCORE" }
 // type Dispatch = (action: Action) => void
 
 const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "SET_CURRENT_QUESTION":
-      return {
-        ...state,
-        currentQuestion: state.currentQuestion + 1,
-      }
-    case "SELECT_OPTION":
-      return {
-        ...state,
-        currentQuestion: action.payload.nextQuestion,
-        score: action.payload.isCorrect ? state.score + 1 : state.score,
-      }
-    case "END_GAME":
-      return { ...state, isGameDone: true }
-    default:
-      throw new Error(`unable to read action`)
-  }
+  return produce(state, draft => {
+    switch (action.type) {
+      case "SET_CURRENT_QUESTION":
+        return {
+          ...state,
+          currentQuestion: state.currentQuestion + 1,
+        }
+      case "SELECT_OPTION":
+        console.log({ a: action.payload })
+        return {
+          ...state,
+          currentQuestion: action.payload,
+        }
+      case "INCREMENT_SCORE":
+        return { ...state, score: state.score + 1 }
+      case "END_GAME":
+        return { ...state, isGameDone: true }
+      default:
+        throw new Error(`unable to read action`)
+    }
+  })
 }
 
 const GameWrapper = styled.section`
@@ -88,7 +89,6 @@ const List = styled.ul`
   li {
     border: 1px solid white;
     &:nth-of-type(2n) {
-      background-color: red;
       display: flex;
       justify-content: space-between;
     }
@@ -111,10 +111,13 @@ const QuizV2 = () => {
     score: 0,
     isGameDone: false,
   })
+
   return (
     <GameWrapper>
       <Fade isAnimated={isGameDone} options={fadeOptions}>
-        <p>you scored {score}/questions.length of questions</p>
+        <p>
+          you scored {score}/{questions.length} of questions
+        </p>
       </Fade>
 
       <GameBody>
@@ -131,9 +134,12 @@ const QuizV2 = () => {
               <button
                 key={prefix}
                 onClick={() => {
+                  if (isCorrect) {
+                    dispatch({ type: "INCREMENT_SCORE" })
+                  }
                   const nextQuestion = currentQuestion + 1
                   if (nextQuestion < questions.length) {
-                    dispatch({ type: "SELECT_OPTION", payload: { isCorrect, nextQuestion } })
+                    dispatch({ type: "SELECT_OPTION", payload: nextQuestion })
                   } else {
                     dispatch({ type: "END_GAME" })
                   }
