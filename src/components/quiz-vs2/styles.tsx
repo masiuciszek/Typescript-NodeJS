@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { motion } from "framer-motion"
 import { colors, elevations, resetBtnStyles } from "../../styles/common"
 
 export const GameWrapper = styled.section`
@@ -69,4 +70,14 @@ export const AnswerButton = styled(Button)`
       transform: rotate(3deg);
     }
   }
+`
+
+export const BtnPrimary = styled(Button)`
+  background-color: ${colors.warning};
+`
+
+export const ButtonWrapper = styled(motion.div)`
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
 `

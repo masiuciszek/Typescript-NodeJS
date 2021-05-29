@@ -33,6 +33,7 @@ export const resetBtnStyles = css`
   color: ${colors.text};
   box-shadow: ${elevations.shadowM};
   font-size: 1rem;
+  outline: 0;
   padding: 0.2em;
   font-family: "Montserrat Alternates", sans-serif;
 `

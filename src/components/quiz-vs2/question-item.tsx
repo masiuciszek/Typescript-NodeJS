@@ -1,30 +1,15 @@
 import { FC } from "react"
+import { questions } from "./data"
 import { AnswerButton, Cell } from "./styles"
 import { Action } from "./types"
 
-interface Answer {
-  text: string
-  prefix: string
-  isCorrect: boolean
-}
-interface Question {
-  id: number
-  question: string
-  answers: Answer[]
-}
 interface Props {
-  questions: Question[]
   hasClosedModal: boolean
   currentQuestion: number
   dispatch: React.Dispatch<Action>
 }
 
-export const QuestionItem: FC<Props> = ({
-  questions,
-  hasClosedModal,
-  currentQuestion,
-  dispatch,
-}) => (
+export const QuestionItem: FC<Props> = ({ hasClosedModal, currentQuestion, dispatch }) => (
   <>
     {questions.map(({ question, id, answers }) => (
       <li key={id}>
@@ -40,10 +25,11 @@ export const QuestionItem: FC<Props> = ({
                 if (isCorrect) {
                   dispatch({ type: "INCREMENT_SCORE" })
                 }
+
                 const nextQuestion = currentQuestion + 1
+                dispatch({ type: "ADD_ANSWERED_DATA", payload: { id, prefix } })
                 if (nextQuestion < questions.length) {
-                  // TODO: make a new dispatch above with only  {prefix, id}
-                  dispatch({ type: "SELECT_OPTION", payload: { nextQuestion, prefix, id } })
+                  dispatch({ type: "SELECT_OPTION", payload: nextQuestion })
                 } else {
                   dispatch({ type: "END_GAME" })
                 }

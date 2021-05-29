@@ -3,15 +3,19 @@ export interface State {
   score: number
   isGameDone: boolean
   hasClosedModal: boolean
-  answeredQuestions: any[]
+  answeredQuestions: { id: number; prefix: string }[]
+  isMyStatsModalOpen: boolean
 }
 
 export type Action =
   | { type: "SET_CURRENT_QUESTION" }
-  | { type: "SELECT_OPTION"; payload: { prefix: string; nextQuestion: number; id: number } }
+  | { type: "SELECT_OPTION"; payload: number }
   | { type: "END_GAME" }
   | { type: "INCREMENT_SCORE" }
   | { type: "NEW_GAME" }
+  | { type: "ADD_ANSWERED_DATA"; payload: { id: number; prefix: string } }
   | { type: "CLOSE_MODAL" }
+  | { type: "SHOW_MY_STATS" }
+  | { type: "CLOSE_MY_STATS_MODAL" }
 
 export type Dispatch = (action: Action) => void
