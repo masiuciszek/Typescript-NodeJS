@@ -55,29 +55,27 @@ const QuizList = styled.ul`
   }
 `
 
-export const Box = ({ questions, currentQuestion, handleClick }: Props) => {
-  return (
-    <QuizBox
-      initial={{ opacity: 0, x: -1000 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 1, x: 1000 }}
-    >
-      <QuestionWrapper>
-        <p>{questions[currentQuestion].question}</p>
-      </QuestionWrapper>
-      <QuizList>
-        {questions[currentQuestion].answers.map(({ text, isCorrect }) => (
-          <li key={text}>
-            <motion.button
-              type="button"
-              onClick={() => handleClick(isCorrect)}
-              whileHover={{ backgroundColor: colors.text, color: colors.primary, scale: 1.03 }}
-            >
-              {text}
-            </motion.button>
-          </li>
-        ))}
-      </QuizList>
-    </QuizBox>
-  )
-}
+export const Box = ({ questions, currentQuestion, handleClick }: Props) => (
+  <QuizBox
+    initial={{ opacity: 0, x: -1000 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 1, x: 1000 }}
+  >
+    <QuestionWrapper>
+      <p>{questions[currentQuestion].question}</p>
+    </QuestionWrapper>
+    <QuizList>
+      {questions[currentQuestion].answers.map(({ text, isCorrect }) => (
+        <li key={text}>
+          <motion.button
+            type="button"
+            onClick={() => handleClick(isCorrect)}
+            whileHover={{ backgroundColor: colors.text, color: colors.primary, scale: 1.03 }}
+          >
+            {text}
+          </motion.button>
+        </li>
+      ))}
+    </QuizList>
+  </QuizBox>
+)
