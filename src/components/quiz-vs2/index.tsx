@@ -1,5 +1,4 @@
 import { useReducer } from "react"
-
 import { FinalMessage } from "./final-message"
 import {
   BtnPrimary,
@@ -12,7 +11,6 @@ import {
   List,
 } from "./styles"
 import { QuestionItem } from "./question-item"
-
 import MyStatsDialog from "./my-stats-dialog"
 import { questions } from "./data"
 import { reducer } from "./reducer"
