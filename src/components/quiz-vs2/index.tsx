@@ -17,13 +17,13 @@ import { reducer } from "./reducer"
 
 const QuizV2 = () => {
   const [
-    { currentQuestion, score, isGameDone, hasClosedModal, answeredQuestions, isMyStatsModalOpen },
+    { currentQuestion, score, isGameDone, isModalOpen, answeredQuestions, isMyStatsModalOpen },
     dispatch,
   ] = useReducer(reducer, {
     currentQuestion: 0,
     score: 0,
     isGameDone: false,
-    hasClosedModal: false,
+    isModalOpen: false,
     answeredQuestions: [],
     isMyStatsModalOpen: false,
   })
@@ -36,7 +36,7 @@ const QuizV2 = () => {
         closeMyStatsModal={() => dispatch({ type: "CLOSE_MY_STATS_MODAL" })}
       />
       <FinalMessage
-        isGameDone={isGameDone}
+        isModalOpen={isModalOpen}
         questionsLength={questions.length}
         newGame={() => dispatch({ type: "NEW_GAME" })}
         closeModal={() => dispatch({ type: "CLOSE_MODAL" })}
@@ -52,20 +52,21 @@ const QuizV2 = () => {
         </Header>
         <List>
           <QuestionItem
-            hasClosedModal={hasClosedModal}
+            isModalOpen={isModalOpen}
             currentQuestion={currentQuestion}
             dispatch={dispatch}
           />
         </List>
       </GameBody>
       {/* when game is over */}
-      {currentQuestion === questions.length - 1 && (
+      {isGameDone && (
         <ButtonWrapper
           initial={{ opacity: 0, x: -1000 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -1000 }}
         >
           <Button onClick={() => dispatch({ type: "SHOW_MY_STATS" })}>view your answers</Button>
+          <Button onClick={() => dispatch({ type: "OPEN_MODAL" })}>view result</Button>
           <BtnPrimary onClick={() => dispatch({ type: "NEW_GAME" })}>new game</BtnPrimary>
         </ButtonWrapper>
       )}

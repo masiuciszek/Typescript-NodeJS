@@ -4,12 +4,12 @@ import { AnswerButton, Cell } from "./styles"
 import { Action } from "./types"
 
 interface Props {
-  hasClosedModal: boolean
+  isModalOpen: boolean
   currentQuestion: number
   dispatch: React.Dispatch<Action>
 }
 
-export const QuestionItem: FC<Props> = ({ hasClosedModal, currentQuestion, dispatch }) => (
+export const QuestionItem: FC<Props> = ({ isModalOpen, currentQuestion, dispatch }) => (
   <>
     {questions.map(({ question, id, answers }) => (
       <li key={id}>
@@ -19,7 +19,7 @@ export const QuestionItem: FC<Props> = ({ hasClosedModal, currentQuestion, dispa
         <Cell>
           {answers.map(({ text, prefix, isCorrect }) => (
             <AnswerButton
-              disabled={hasClosedModal || id !== currentQuestion}
+              disabled={isModalOpen || id !== currentQuestion}
               key={prefix}
               onClick={() => {
                 if (isCorrect) {

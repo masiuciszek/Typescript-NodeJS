@@ -5,7 +5,7 @@ import { colors, resetBtnStyles } from "../../styles/common"
 import { Fade } from "../common/fade"
 
 interface Props {
-  isGameDone: boolean
+  isModalOpen: boolean
   score: number
   questionsLength: number
   newGame: () => void
@@ -86,14 +86,14 @@ const StyledLink = styled(Link)`
 `
 
 export const FinalMessage = ({
-  isGameDone,
+  isModalOpen,
   score,
   questionsLength,
   newGame,
   closeModal,
 }: Props) => {
   return (
-    <Fade isAnimated={isGameDone} options={fadeOptions} className={messageStyles}>
+    <Fade isAnimated={isModalOpen} options={fadeOptions} className={messageStyles}>
       <div className="wrapper">
         <p>
           you scored {score}/{questionsLength} of questions

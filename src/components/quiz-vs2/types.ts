@@ -2,7 +2,7 @@ export interface State {
   currentQuestion: number
   score: number
   isGameDone: boolean
-  hasClosedModal: boolean
+  isModalOpen: boolean
   answeredQuestions: { id: number; prefix: string }[]
   isMyStatsModalOpen: boolean
 }
@@ -16,6 +16,7 @@ export type Action =
   | { type: "ADD_ANSWERED_DATA"; payload: { id: number; prefix: string } }
   | { type: "CLOSE_MODAL" }
   | { type: "SHOW_MY_STATS" }
+  | { type: "OPEN_MODAL" }
   | { type: "CLOSE_MY_STATS_MODAL" }
 
 export type Dispatch = (action: Action) => void

@@ -77,7 +77,7 @@ export const BtnPrimary = styled(Button)`
 `
 
 export const ButtonWrapper = styled(motion.div)`
-  width: 20rem;
+  max-width: 30rem;
   display: flex;
   justify-content: space-between;
 `

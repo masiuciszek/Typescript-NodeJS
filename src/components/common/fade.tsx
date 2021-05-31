@@ -19,6 +19,7 @@ export const Fade: React.FC<Props> = ({ isAnimated, children, options, className
           initial={{ opacity: 0, x: -1000 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -1000 }}
+          transition={{ delay: 0.2 }}
           {...options}
         >
           {children}

@@ -1,4 +1,5 @@
 import { css } from "@emotion/css"
+import { motion } from "framer-motion"
 import { colors, resetBtnStyles } from "../../styles/common"
 import { Fade } from "../common/fade"
 import { questions } from "./data"
@@ -87,7 +88,7 @@ const MyStatsModal = ({ answeredQuestions, isMyStatsModalOpen, closeMyStatsModal
 
   return (
     <Fade isAnimated={isMyStatsModalOpen} className={styles}>
-      <ul>
+      <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} layout>
         {answeredQuestions.map(({ id, prefix }) => {
           console.log({ id, prefix })
           return (
@@ -104,7 +105,7 @@ const MyStatsModal = ({ answeredQuestions, isMyStatsModalOpen, closeMyStatsModal
             &#xd7;
           </button>
         </li>
-      </ul>
+      </motion.ul>
     </Fade>
   )
 }

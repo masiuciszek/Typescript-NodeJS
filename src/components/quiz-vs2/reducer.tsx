@@ -30,18 +30,20 @@ export const reducer = (state: State, action: Action) => {
           score: 0,
           currentQuestion: 0,
           isGameDone: false,
-          hasClosedModal: false,
+          isModalOpen: false,
           isMyStatsModalOpen: false,
           answeredQuestions: [],
         }
       case "SHOW_MY_STATS":
         return { ...state, isMyStatsModalOpen: true }
       case "CLOSE_MODAL":
-        return { ...state, hasClosedModal: true, isGameDone: false }
+        return { ...state, isModalOpen: false }
+      case "OPEN_MODAL":
+        return { ...state, isModalOpen: true }
       case "CLOSE_MY_STATS_MODAL":
         return { ...state, isMyStatsModalOpen: false }
       case "END_GAME":
-        return { ...state, isGameDone: true }
+        return { ...state, isGameDone: true, isModalOpen: true }
       default:
         throw new Error(`unable to read action`)
     }
