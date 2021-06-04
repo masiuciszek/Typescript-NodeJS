@@ -10,6 +10,7 @@ export const colors = {
   accentShadow: "var(--accent-shadow)",
   dangerShadow: "var(--danger-shadow)",
   warningShadow: "var(--warning-shadow)",
+  darkestShadow: "var(--darkest-shadow)",
 } as const
 
 export const elevations = {

@@ -8,6 +8,8 @@ export const GameWrapper = styled.section`
 
 export const GameBody = styled.div`
   box-shadow: ${elevations.shadowM};
+  display: flex;
+  flex-direction: column;
 `
 
 export const Header = styled.div`
@@ -29,7 +31,10 @@ export const List = styled.ul`
   padding: 0;
   li {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr;
+    @media (min-width: 600px) {
+      grid-template-columns: 1fr 1.5fr;
+    }
   }
 `
 
@@ -40,6 +45,9 @@ export const Cell = styled.div`
   &:nth-of-type(2n) {
     display: flex;
     justify-content: space-evenly;
+    @media (max-width: 600px) {
+      height: 3.4rem;
+    }
   }
 `
 

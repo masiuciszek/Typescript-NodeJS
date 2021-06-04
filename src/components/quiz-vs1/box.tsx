@@ -25,10 +25,14 @@ const QuizBox = styled(motion.div)`
   max-width: 800px;
   margin: 0 auto 0.5em;
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr;
   min-height: 12rem;
   border-radius: 4px;
   box-shadow: ${elevations.shadowM};
+
+  @media (min-width: 490px) {
+    grid-template-columns: 1.3fr 1fr;
+  }
 `
 
 const QuestionWrapper = styled.div`
@@ -37,6 +41,8 @@ const QuestionWrapper = styled.div`
   p {
     border-bottom: 2px solid ${colors.accent};
   }
+  justify-content: center;
+  text-align: center;
 `
 
 const QuizList = styled.ul`

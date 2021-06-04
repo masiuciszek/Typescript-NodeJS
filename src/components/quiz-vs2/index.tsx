@@ -15,7 +15,6 @@ import MyStatsDialog from "./my-stats-dialog"
 import { questions } from "./data"
 import { reducer } from "./reducer"
 
-// TODO: Change how we display thr modals with different logic
 const QuizV2 = () => {
   const [
     { currentQuestion, score, isGameDone, isModalOpen, answeredQuestions, isMyStatsModalOpen },
