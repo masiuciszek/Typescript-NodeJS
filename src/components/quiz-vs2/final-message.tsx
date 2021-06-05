@@ -104,23 +104,26 @@ export const FinalMessage = ({
   questionsLength,
   newGame,
   closeModal,
-}: Props) => {
-  return (
-    <Fade isAnimated={isModalOpen} options={fadeOptions} className={messageStyles}>
-      <div className="wrapper">
-        <p>
-          you scored {score}/{questionsLength} of questions
-        </p>
-        <div className="btn-wrapper">
-          <Button type="button" onClick={newGame}>
-            new game
-          </Button>
-          <StyledLink to="/">back home</StyledLink>
-        </div>
-        <button className="exit-btn" type="button" onClick={closeModal}>
-          &#xd7;
-        </button>
+}: Props) => (
+  <Fade isAnimated={isModalOpen} options={fadeOptions} className={messageStyles}>
+    <div className="wrapper">
+      <p>
+        you scored {score}/{questionsLength} of questions
+      </p>
+      <div className="btn-wrapper">
+        <Button type="button" onClick={newGame}>
+          new game
+        </Button>
+        <StyledLink to="/">back home</StyledLink>
       </div>
-    </Fade>
-  )
-}
+      <button
+        className="exit-btn"
+        data-testid="close-btn-for-final-message"
+        type="button"
+        onClick={closeModal}
+      >
+        &#xd7;
+      </button>
+    </div>
+  </Fade>
+)
