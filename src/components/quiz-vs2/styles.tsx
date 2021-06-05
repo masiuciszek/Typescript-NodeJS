@@ -88,4 +88,9 @@ export const ButtonWrapper = styled(motion.div)`
   max-width: 30rem;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    button {
+      font-size: 0.8rem;
+    }
+  }
 `

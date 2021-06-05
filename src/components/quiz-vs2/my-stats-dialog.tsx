@@ -1,4 +1,5 @@
 import { css } from "@emotion/css"
+import styled from "@emotion/styled"
 import { motion } from "framer-motion"
 import { colors, resetBtnStyles } from "../../styles/common"
 import { Fade } from "../common/fade"
@@ -34,49 +35,51 @@ const styles = css`
   align-items: center;
   flex-flow: column wrap;
   z-index: 3;
-  ul {
-    position: relative;
+`
+
+const StatsList = styled(motion.ul)`
+  padding: 1rem;
+  position: relative;
+  .wrapper {
     background-color: ${colors.bg};
-    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 2rem;
     border-radius: 4px;
+    font-size: 1.2em;
+    width: 35rem;
+    @media (max-width: 600px) {
+      max-width: 20rem;
+      max-height: 28rem;
+      overflow: scroll;
+    }
+  }
+  p {
+    span {
+      color: ${colors.accent};
+      text-shadow: 1px 1px ${colors.primary};
+      margin-left: 0.3rem;
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid ${colors.accent};
+  }
+  .exit-btn {
+    ${resetBtnStyles};
+    background-color: ${colors.accent};
+    color: ${colors.bg};
+    position: absolute;
+    top: -0.3rem;
+    right: 0.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
     display: flex;
-    flex-flow: column wrap;
-    li {
-      font-size: 1.2em;
-      display: flex;
-      justify-content: space-between;
-      flex-flow: column wrap;
-      p {
-        max-width: 14rem;
-        span {
-          color: ${colors.accent};
-          text-shadow: 1px 1px ${colors.primary};
-          margin-left: 0.3rem;
-        }
-      }
-      @media (min-width: 550px) {
-        flex-flow: row wrap;
-      }
-      &:not(:last-child) {
-        border-bottom: 1px solid ${colors.accent};
-      }
-    }
-    .exit-btn {
-      ${resetBtnStyles};
-      background-color: ${colors.accent};
-      color: ${colors.bg};
-      position: absolute;
-      top: -1rem;
-      right: -0.5rem;
-      height: 2.5rem;
-      width: 2.5rem;
-      border: none;
-      border-radius: 50%;
-      font-size: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    align-items: center;
+    justify-content: center;
   }
 `
 
@@ -88,24 +91,23 @@ const MyStatsModal = ({ answeredQuestions, isMyStatsModalOpen, closeMyStatsModal
 
   return (
     <Fade isAnimated={isMyStatsModalOpen} className={styles}>
-      <motion.ul initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} layout>
-        {answeredQuestions.map(({ id, prefix }) => {
-          console.log({ id, prefix })
-          return (
+      <StatsList initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} layout>
+        <li className="wrapper">
+          {answeredQuestions.map(({ id, prefix }) => (
             <li key={id}>
               <p>{getQuestionRelatedToYourAnswer(id)?.question}</p>
               <p>
                 <span>You answered:</span> {prefix}
               </p>
             </li>
-          )
-        })}
-        <li>
-          <button className="exit-btn" type="button" onClick={closeMyStatsModal}>
-            &#xd7;
-          </button>
+          ))}
+          <li>
+            <button className="exit-btn" type="button" onClick={closeMyStatsModal}>
+              &#xd7;
+            </button>
+          </li>
         </li>
-      </motion.ul>
+      </StatsList>
     </Fade>
   )
 }

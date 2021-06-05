@@ -12,11 +12,12 @@ const NavStyles = styled.nav`
 
 const NavButton = styled.button`
   ${resetBtnStyles};
-
+  padding: 0.5rem;
   z-index: 5;
   position: fixed;
   top: 1rem;
   right: 2rem;
+  width: 5rem;
 `
 
 export const Nav = () => {

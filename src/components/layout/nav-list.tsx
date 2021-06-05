@@ -18,12 +18,16 @@ const navListStyles = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0;
   li {
     margin-bottom: 1rem;
     font-size: 2rem;
     a {
       color: ${colors.text};
     }
+  }
+  @media (min-width: 500px) {
+    width: 70%;
   }
 `
 interface Props {
@@ -33,9 +37,9 @@ const NavList: FC<Props> = ({ className }) => {
   return (
     <motion.ul
       className={cx(navListStyles, className)}
-      initial={{ opacity: 0, y: -1000 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -1000 }}
+      initial={{ opacity: 0, x: -1000 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -1000 }}
       transition={{ damping: 3, stiffness: 59 }}
     >
       <motion.li whileHover={{ scale: 1.1 }}>

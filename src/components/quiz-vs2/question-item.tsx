@@ -14,7 +14,9 @@ export const QuestionItem: FC<Props> = ({ isModalOpen, currentQuestion, dispatch
     {questions.map(({ question, id, answers }) => (
       <li key={id}>
         <Cell>
-          <p>{question}</p>
+          <p>
+            {id + 1} {question}
+          </p>
         </Cell>
         <Cell>
           {answers.map(({ text, prefix, isCorrect }) => (

@@ -37,11 +37,29 @@ export const questions = [
   },
   {
     id: 4,
-    question: "convert 99 to a binary number",
+    question: "convert 12 to a binary number",
     answers: [
-      { text: "0b1111100111", prefix: "1", isCorrect: true },
-      { text: "0b1111100001", prefix: "x", isCorrect: false },
-      { text: "0b1001100111", prefix: "2", isCorrect: false },
+      { text: "0b1100", prefix: "1", isCorrect: true },
+      { text: "0b1000", prefix: "x", isCorrect: false },
+      { text: "0b1101", prefix: "2", isCorrect: false },
+    ],
+  },
+  {
+    id: 5,
+    question: "Deno is build with",
+    answers: [
+      { text: "c++", prefix: "1", isCorrect: false },
+      { text: "Haskell", prefix: "x", isCorrect: false },
+      { text: "Rust", prefix: "2", isCorrect: true },
+    ],
+  },
+  {
+    id: 6,
+    question: "Node is build with",
+    answers: [
+      { text: "c++", prefix: "1", isCorrect: true },
+      { text: "Haskell", prefix: "x", isCorrect: false },
+      { text: "Rust", prefix: "2", isCorrect: false },
     ],
   },
 ]

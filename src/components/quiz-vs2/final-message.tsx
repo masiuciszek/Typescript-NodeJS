@@ -41,6 +41,10 @@ const messageStyles = css`
     align-items: center;
     flex-flow: column wrap;
     color: ${colors.bg};
+    max-width: 18rem;
+    @media (min-width: 500px) {
+      max-width: 45rem;
+    }
     p {
       font-size: 2rem;
     }
@@ -65,6 +69,15 @@ const messageStyles = css`
       display: flex;
       justify-content: space-evenly;
       padding: 0.5em;
+      @media (max-width: 500px) {
+        flex-flow: column wrap;
+        button,
+        a {
+          width: 100%;
+          text-align: center;
+          display: block;
+        }
+      }
     }
   }
 `
