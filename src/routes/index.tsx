@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom"
 const HomePage = lazy(() => import("../components/pages"))
 const QuizV1 = lazy(() => import("../components/quiz-vs1"))
 const QuizV2 = lazy(() => import("../components/quiz-vs2"))
+const AboutPage = lazy(() => import("../components/pages/about"))
 
 const Routes = () => {
   return (
@@ -12,6 +13,7 @@ const Routes = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/q1" component={QuizV1} />
         <Route exact path="/q2" component={QuizV2} />
+        <Route exact path="/about" component={AboutPage} />
       </Switch>
     </Suspense>
   )

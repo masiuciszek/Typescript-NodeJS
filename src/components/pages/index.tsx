@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { Link } from "react-router-dom"
-import { quizzesComponentsPath } from "../../data"
+import { pathsData } from "../../data"
 import { colors } from "../../styles/common"
 
 const HomeWrapper = styled.section`
@@ -37,7 +37,7 @@ const HomePage = () => {
     <HomeWrapper>
       <h1>Quiz apps</h1>
       <List>
-        {quizzesComponentsPath.map(({ path, name }) => (
+        {pathsData.map(({ path, name }) => (
           <li key={name}>
             {" "}
             <Link to={path}>{name}</Link>{" "}

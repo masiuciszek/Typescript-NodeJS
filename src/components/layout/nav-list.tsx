@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { css, cx } from "@emotion/css"
 import { Link } from "react-router-dom"
-import { quizzesComponentsPath } from "../../data"
+import { pathsData } from "../../data"
 import { motion } from "framer-motion"
 import { colors } from "../../styles/common"
 
@@ -45,7 +45,7 @@ const NavList: FC<Props> = ({ className }) => {
       <motion.li whileHover={{ scale: 1.1 }}>
         <Link to="/"> home </Link>
       </motion.li>
-      {quizzesComponentsPath.map(({ path, name }) => (
+      {pathsData.map(({ path, name }) => (
         <motion.li key={name} whileHover={{ scale: 1.1 }}>
           <Link to={path}>{name}</Link>
         </motion.li>
