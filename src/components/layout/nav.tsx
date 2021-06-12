@@ -18,14 +18,16 @@ const NavButton = styled.button`
   top: 1rem;
   right: 2rem;
   width: 5rem;
+  border: none;
 `
 
 export const Nav = () => {
   const { state: on, toggle } = useToggle()
+  console.log({ on })
   return (
     <NavStyles>
       <NavButton type="button" onClick={toggle}>
-        {on ? "hide" : "menu"}
+        {on ? "⚛️" : "🍔"}
       </NavButton>
       <AnimatePresence>{on && <NavList />}</AnimatePresence>
     </NavStyles>
