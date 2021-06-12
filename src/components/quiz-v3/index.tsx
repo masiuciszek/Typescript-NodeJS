@@ -1,8 +1,7 @@
 import styled from "@emotion/styled"
 import { useMachine } from "@xstate/react"
 import { AnimatePresence, motion } from "framer-motion"
-import React from "react"
-import { createMachine } from "xstate"
+import { assign, createMachine, Interpreter } from "xstate"
 import Layout from "../layout"
 
 interface Answer {
@@ -25,6 +24,15 @@ const quizData = [
       { answer: "France", isTrue: true },
     ],
   },
+  {
+    id: 1,
+    question: "Who won world cup in football 2002?",
+    answers: [
+      { answer: "Brail", isTrue: true },
+      { answer: "Germany", isTrue: false },
+      { answer: "France", isTrue: false },
+    ],
+  },
 ]
 
 interface QuizGameContext {
@@ -32,35 +40,68 @@ interface QuizGameContext {
   currentQuestion: number
   quizData: Array<QuizData>
 }
-type QuizMachineEvent = { type: "TOGGLE" }
 
-const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>({
-  id: "quiz",
-  initial: "inactive",
-  context: {
-    score: 0,
-    currentQuestion: 0,
-    quizData,
-  },
-  states: {
-    inactive: {
-      on: {
-        TOGGLE: {
-          target: "active",
+type QuizMachineEvent =
+  | { type: "TOGGLE" }
+  | { type: "CLICK" }
+  | { type: "SELECT" }
+  | { type: "NEXT" }
+
+const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
+  {
+    id: "quiz",
+    initial: "inactive",
+    context: {
+      score: 0,
+      currentQuestion: 0,
+      quizData,
+    },
+    states: {
+      inactive: {
+        on: {
+          TOGGLE: {
+            target: "active",
+          },
+        },
+      },
+      active: {
+        on: {
+          TOGGLE: {
+            target: "inactive",
+          },
+          SELECT: {
+            target: "select",
+          },
+        },
+      },
+      select: {
+        initial: "gameOn",
+        states: {
+          gameOn: {
+            entry: "nextQuestion",
+            on: {
+              NEXT: {
+                target: "#quiz.active",
+              },
+            },
+          },
         },
       },
     },
-    active: {
-      on: {
-        TOGGLE: {
-          target: "inactive",
-        },
-      },
-    },
   },
-})
+  {
+    actions: {
+      nextQuestion: assign({
+        currentQuestion: context => context.currentQuestion + 1,
+      }),
+    },
+  }
+)
 
-const Wrapper = styled.section``
+const Wrapper = styled.section`
+  border: 1px solid red;
+  min-height: 65vh;
+`
 
 const BtnWrapper = styled.div`
   display: flex;
@@ -69,8 +110,6 @@ const BtnWrapper = styled.div`
 const QuizGame = () => {
   const [state, send] = useMachine(quizMachine)
 
-  console.log(state.context)
-  console.log(state.value)
   return (
     <Layout>
       <Wrapper>
@@ -83,7 +122,7 @@ const QuizGame = () => {
               Start
             </button>
           )}
-          {state.matches("active") && (
+          {state.value === "active" && (
             <button type="button" onClick={() => send("TOGGLE")}>
               {" "}
               Close game
@@ -91,8 +130,14 @@ const QuizGame = () => {
           )}
         </BtnWrapper>
 
-        <AnimatePresence>
-          {state.matches("active") && <QuizBox quizData={state.context.quizData} />}
+        <AnimatePresence presenceAffectsLayout>
+          {state.matches("active") && (
+            <QuizBox
+              quizData={state.context.quizData}
+              send={send}
+              currentQuestion={state.context.currentQuestion}
+            />
+          )}
         </AnimatePresence>
       </Wrapper>
     </Layout>
@@ -101,21 +146,33 @@ const QuizGame = () => {
 
 interface QuizBoxProps {
   quizData: Array<QuizData>
+  send: Interpreter<QuizGameContext, any, QuizMachineEvent>["send"]
+  currentQuestion: number
 }
 
-function QuizBox({ quizData }: QuizBoxProps) {
+function QuizBox({ quizData, send, currentQuestion }: QuizBoxProps) {
   return (
-    <motion.section>
-      {quizData.map(data => (
-        <div key={data.id}>
-          <p>{data.question}</p>
-          <ul>
-            {data.answers.map(({ answer, isTrue }) => (
-              <li key={answer}>{answer}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <motion.section
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+    >
+      <div>
+        <p>{quizData[currentQuestion].question}</p>
+        <ul>
+          {quizData[currentQuestion].answers.map(({ answer, isTrue }) => (
+            <li key={answer}>
+              <button
+                onClick={() => {
+                  send("SELECT")
+                }}
+              >
+                {answer}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </motion.section>
   )
 }
