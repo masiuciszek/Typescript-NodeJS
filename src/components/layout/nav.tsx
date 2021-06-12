@@ -23,7 +23,7 @@ const NavButton = styled.button`
 
 export const Nav = () => {
   const { state: on, toggle } = useToggle()
-  console.log({ on })
+
   return (
     <NavStyles>
       <NavButton type="button" onClick={toggle}>
