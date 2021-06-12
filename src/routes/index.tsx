@@ -5,7 +5,7 @@ const HomePage = lazy(() => import("../components/pages"))
 const QuizV1 = lazy(() => import("../components/quiz-vs1"))
 const QuizV2 = lazy(() => import("../components/quiz-vs2"))
 const QuizV3 = lazy(() => import("../components/quiz-v3"))
-const AboutPage = lazy(() => import("../components/pages/about"))
+const AboutPage = lazy(() => import("../components/pages/about/about-page"))
 
 const Routes = () => {
   return (

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useMachine } from "@xstate/react"
 import { AnimatePresence, motion } from "framer-motion"
+import React from "react"
 import { createMachine } from "xstate"
 import Layout from "../layout"
 
@@ -91,23 +92,31 @@ const QuizGame = () => {
         </BtnWrapper>
 
         <AnimatePresence>
-          {state.matches("active") && (
-            <motion.section>
-              {state.context.quizData.map(data => (
-                <div key={data.id}>
-                  <p>{data.question}</p>
-                  <ul>
-                    {data.answers.map(({ answer, isTrue }) => (
-                      <li key={answer}>{answer}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </motion.section>
-          )}
+          {state.matches("active") && <QuizBox quizData={state.context.quizData} />}
         </AnimatePresence>
       </Wrapper>
     </Layout>
+  )
+}
+
+interface QuizBoxProps {
+  quizData: Array<QuizData>
+}
+
+function QuizBox({ quizData }: QuizBoxProps) {
+  return (
+    <motion.section>
+      {quizData.map(data => (
+        <div key={data.id}>
+          <p>{data.question}</p>
+          <ul>
+            {data.answers.map(({ answer, isTrue }) => (
+              <li key={answer}>{answer}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </motion.section>
   )
 }
 
