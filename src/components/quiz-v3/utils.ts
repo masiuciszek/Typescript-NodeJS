@@ -66,14 +66,6 @@ export interface QuizGameContext {
   answeredData: Answer[]
 }
 
-interface NextEvent {
-  isTrue: boolean
-  hasAnsweredLastQuestion: boolean
-  answer: string
-  question: string
-  id: number
-}
-
 export type QuizMachineEvent =
   | { type: "TOGGLE" }
   | { type: "CLICK" }
