@@ -1,8 +1,13 @@
 import styled from "@emotion/styled"
 import { useMachine } from "@xstate/react"
 import { AnimatePresence, motion } from "framer-motion"
-import { assign, createMachine, EventObject, Interpreter } from "xstate"
+import { assign, createMachine, EventObject, Interpreter, StateValue } from "xstate"
 import Layout from "../layout"
+
+const EVENTS = {
+  NEXT: "NEXT",
+  TOGGLE: "TOGGLE",
+}
 
 function assertEventType<TE extends EventObject, TType extends TE["type"]>(
   event: TE,
@@ -48,13 +53,14 @@ interface QuizGameContext {
   score: number
   currentQuestion: number
   quizData: Array<QuizData>
+  hasAnsweredLastQuestion: boolean
 }
 
 type QuizMachineEvent =
   | { type: "TOGGLE" }
   | { type: "CLICK" }
   | { type: "SELECT" }
-  | { type: "NEXT"; isTrue: boolean }
+  | { type: "NEXT"; isTrue: boolean; hasAnsweredLastQuestion: boolean }
   | { type: "START" }
 
 const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
@@ -65,11 +71,12 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       score: 0,
       currentQuestion: 0,
       quizData,
+      hasAnsweredLastQuestion: false,
     },
     states: {
       idle: {
         on: {
-          TOGGLE: {
+          [EVENTS.TOGGLE]: {
             target: "active",
           },
         },
@@ -77,18 +84,20 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       active: {
         always: [{ target: "finalQuestion", cond: "isOnLastQuestion" }],
         on: {
-          NEXT: {
+          [EVENTS.NEXT]: {
             actions: ["nextQuestion", "incrementScore"],
           },
         },
       },
       finalQuestion: {
+        always: [{ target: "endOfQuiz", cond: "isFinalAnswer" }], // when
         on: {
-          NEXT: {
+          [EVENTS.NEXT]: {
             actions: ["incrementScore"],
           },
         },
       },
+      endOfQuiz: {},
     },
   },
   {
@@ -103,6 +112,12 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
           }
           return score
         },
+        hasAnsweredLastQuestion: (context, event) => {
+          if (event.type === "NEXT") {
+            context.hasAnsweredLastQuestion = event.hasAnsweredLastQuestion
+          }
+          return context.hasAnsweredLastQuestion
+        },
       }),
     },
     guards: {
@@ -114,6 +129,7 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       },
       isNotOnLastQuestion: context => context.quizData.length - 1 !== context.currentQuestion,
       isOnLastQuestion: context => context.quizData.length - 1 === context.currentQuestion,
+      isFinalAnswer: context => context.hasAnsweredLastQuestion,
     },
   }
 )
@@ -129,9 +145,11 @@ const BtnWrapper = styled.div`
 
 const QuizGame = () => {
   const [state, send] = useMachine(quizMachine)
-  console.log("state.context", state.context)
+  // console.log("state.context", state.context)
 
-  const showQuestions = state.value === "active" || state.value === "finalQuestion"
+  const showQuestions =
+    state.value === "active" || state.value === "finalQuestion" || state.value === "endOfQuiz"
+  const isQuizDone = state.value === "endOfQuiz"
 
   return (
     <Layout>
@@ -156,6 +174,7 @@ const QuizGame = () => {
               quizData={state.context.quizData}
               send={send}
               currentQuestion={state.context.currentQuestion}
+              currentState={state.value}
             />
           )}
         </AnimatePresence>
@@ -168,9 +187,10 @@ interface QuizBoxProps {
   quizData: Array<QuizData>
   send: Interpreter<QuizGameContext, any, QuizMachineEvent>["send"]
   currentQuestion: number
+  currentState: StateValue
 }
 
-function QuizBox({ quizData, send, currentQuestion }: QuizBoxProps) {
+function QuizBox({ quizData, send, currentQuestion, currentState }: QuizBoxProps) {
   return (
     <motion.section
       initial={{ opacity: 0, y: -100 }}
@@ -183,10 +203,14 @@ function QuizBox({ quizData, send, currentQuestion }: QuizBoxProps) {
           {quizData[currentQuestion].answers.map(({ answer, isTrue }) => (
             <li key={answer}>
               <button
+                type="button"
+                disabled={currentState === "endOfQuiz"}
                 onClick={() => {
-                  send("NEXT", { isTrue })
-                  console.log("foooo")
-                  // send("SELECT")
+                  const nextQuestion = currentQuestion + 1
+                  send("NEXT", {
+                    isTrue,
+                    hasAnsweredLastQuestion: nextQuestion === quizData.length,
+                  })
                 }}
               >
                 {answer}
