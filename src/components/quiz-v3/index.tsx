@@ -1,8 +1,17 @@
 import styled from "@emotion/styled"
 import { useMachine } from "@xstate/react"
 import { AnimatePresence, motion } from "framer-motion"
-import { assign, createMachine, Interpreter } from "xstate"
+import { assign, createMachine, EventObject, Interpreter } from "xstate"
 import Layout from "../layout"
+
+function assertEventType<TE extends EventObject, TType extends TE["type"]>(
+  event: TE,
+  eventType: TType
+): asserts event is TE & { type: TType } {
+  if (event.type !== eventType) {
+    throw new Error(`Invalid event: expected "${eventType}", got "${event.type}"`)
+  }
+}
 
 interface Answer {
   answer: string
@@ -29,8 +38,8 @@ const quizData = [
     question: "Who won world cup in football 2002?",
     answers: [
       { answer: "Brail", isTrue: true },
-      { answer: "Germany", isTrue: false },
-      { answer: "France", isTrue: false },
+      { answer: "England", isTrue: false },
+      { answer: "Italy", isTrue: false },
     ],
   },
 ]
@@ -45,19 +54,20 @@ type QuizMachineEvent =
   | { type: "TOGGLE" }
   | { type: "CLICK" }
   | { type: "SELECT" }
-  | { type: "NEXT" }
+  | { type: "NEXT"; isTrue: boolean }
+  | { type: "START" }
 
 const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
   {
     id: "quiz",
-    initial: "inactive",
+    initial: "idle",
     context: {
       score: 0,
       currentQuestion: 0,
       quizData,
     },
     states: {
-      inactive: {
+      idle: {
         on: {
           TOGGLE: {
             target: "active",
@@ -65,25 +75,17 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
         },
       },
       active: {
+        always: [{ target: "finalQuestion", cond: "isOnLastQuestion" }],
         on: {
-          TOGGLE: {
-            target: "inactive",
-          },
-          SELECT: {
-            target: "select",
+          NEXT: {
+            actions: ["nextQuestion", "incrementScore"],
           },
         },
       },
-      select: {
-        initial: "gameOn",
-        states: {
-          gameOn: {
-            entry: "nextQuestion",
-            on: {
-              NEXT: {
-                target: "#quiz.active",
-              },
-            },
+      finalQuestion: {
+        on: {
+          NEXT: {
+            actions: ["incrementScore"],
           },
         },
       },
@@ -94,6 +96,24 @@ const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       nextQuestion: assign({
         currentQuestion: context => context.currentQuestion + 1,
       }),
+      incrementScore: assign({
+        score: ({ score }, event) => {
+          if (event.type === "NEXT") {
+            return event.isTrue ? score + 1 : score
+          }
+          return score
+        },
+      }),
+    },
+    guards: {
+      isAnswerCorrect: (_, event) => {
+        if (event.type === "NEXT") {
+          return event.isTrue
+        }
+        return false
+      },
+      isNotOnLastQuestion: context => context.quizData.length - 1 !== context.currentQuestion,
+      isOnLastQuestion: context => context.quizData.length - 1 === context.currentQuestion,
     },
   }
 )
@@ -109,29 +129,29 @@ const BtnWrapper = styled.div`
 
 const QuizGame = () => {
   const [state, send] = useMachine(quizMachine)
+  console.log("state.context", state.context)
+
+  const showQuestions = state.value === "active" || state.value === "finalQuestion"
 
   return (
     <Layout>
       <Wrapper>
         <h1>QuizGFame 3</h1>
-        <p>{state.value}</p>
+        <p>
+          {" "}
+          currentState: {state.value} score: {state.context.score}{" "}
+        </p>
         <BtnWrapper>
-          {state.matches("inactive") && (
+          {state.matches("idle") && (
             <button type="button" onClick={() => send("TOGGLE")}>
               {" "}
               Start
             </button>
           )}
-          {state.value === "active" && (
-            <button type="button" onClick={() => send("TOGGLE")}>
-              {" "}
-              Close game
-            </button>
-          )}
         </BtnWrapper>
 
         <AnimatePresence presenceAffectsLayout>
-          {state.matches("active") && (
+          {showQuestions && (
             <QuizBox
               quizData={state.context.quizData}
               send={send}
@@ -164,7 +184,9 @@ function QuizBox({ quizData, send, currentQuestion }: QuizBoxProps) {
             <li key={answer}>
               <button
                 onClick={() => {
-                  send("SELECT")
+                  send("NEXT", { isTrue })
+                  console.log("foooo")
+                  // send("SELECT")
                 }}
               >
                 {answer}
