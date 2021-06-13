@@ -1,5 +1,7 @@
 import { EventObject } from "xstate"
 
+export const BUTTON_WIDTH = 4
+
 export const DIALOG_TYPES = {
   END_GAME_MESSAGE: "END_GAME_MESSAGE",
   SHOW_STATS: "SHOW_STATS",
@@ -19,11 +21,15 @@ export function assertEventType<TE extends EventObject, TType extends TE["type"]
 export const EVENTS = {
   NEXT: "NEXT",
   TOGGLE: "TOGGLE",
+  CLICK: "CLICK",
+  OPEN: "OPEN",
 }
 
 export interface Answer {
   answer: string
   isTrue: boolean
+  question?: string
+  id?: number
 }
 export interface QuizData {
   id: number
@@ -57,13 +63,29 @@ export interface QuizGameContext {
   currentQuestion: number
   quizData: Array<QuizData>
   hasAnsweredLastQuestion: boolean
+  answeredData: Answer[]
+}
+
+interface NextEvent {
+  isTrue: boolean
+  hasAnsweredLastQuestion: boolean
+  answer: string
+  question: string
+  id: number
 }
 
 export type QuizMachineEvent =
   | { type: "TOGGLE" }
   | { type: "CLICK" }
-  | { type: "SELECT" }
-  | { type: "NEXT"; isTrue: boolean; hasAnsweredLastQuestion: boolean }
+  | { type: "OPEN" }
+  | {
+      type: "NEXT"
+      isTrue: boolean
+      hasAnsweredLastQuestion: boolean
+      answer: string
+      question: string
+      id: number
+    }
   | { type: "START" }
 
 export const pluralize = (a: number, input: string) => (a > 1 ? input + "s" : input)

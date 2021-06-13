@@ -1,13 +1,15 @@
 import styled from "@emotion/styled"
 import { useMachine } from "@xstate/react"
+import { colors } from "../../styles/common"
 import { Fade } from "../common/fade"
 import Layout from "../layout"
 import { quizMachine } from "./machine"
 import { QuizBox } from "./quiz-box"
 import QuizDialog from "./quiz-dialog"
+import { Button } from "./styled"
+import { BUTTON_WIDTH, DIALOG_TYPES } from "./utils"
 
 const Wrapper = styled.section`
-  border: 1px solid red;
   min-height: 65vh;
 `
 
@@ -15,16 +17,23 @@ const BtnWrapper = styled.div`
   display: flex;
 `
 
+const Options = styled.div`
+  display: flex;
+`
+
 const QuizGame = () => {
   const [state, send] = useMachine(quizMachine)
   const showQuestions = state.value === "active" || state.value === "finalQuestion"
   const isQuizDone = state.value === "endOfQuiz"
+  const isChecking = state.value === "checking"
+  const isInViewStats = state.value === "viewStats"
 
   return (
     <Layout>
       <QuizDialog
-        isQuizDone={isQuizDone}
-        dialogType={"END_GAME_MESSAGE"}
+        isQuizDone={isQuizDone || isInViewStats}
+        dialogType={isQuizDone ? DIALOG_TYPES.END_GAME_MESSAGE : DIALOG_TYPES.SHOW_STATS}
+        answeredData={state.context.answeredData}
         meta={state.meta}
         currentState={state.value}
         send={send}
@@ -42,10 +51,16 @@ const QuizGame = () => {
         </p>
         <BtnWrapper>
           {state.matches("idle") && (
-            <button type="button" onClick={() => send("TOGGLE")}>
-              {" "}
+            <Button
+              type="button"
+              onClick={() => send("TOGGLE")}
+              whileHover={{
+                backgroundColor: colors.darkestShadow,
+                width: BUTTON_WIDTH + 100,
+              }}
+            >
               Start
-            </button>
+            </Button>
           )}
         </BtnWrapper>
 
@@ -56,6 +71,22 @@ const QuizGame = () => {
             currentQuestion={state.context.currentQuestion}
             currentState={state.value}
           />
+        </Fade>
+
+        <Fade isAnimated={isChecking}>
+          <Options>
+            <button type="button" onClick={() => send("TOGGLE")}>
+              new game
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                send("CLICK")
+              }}
+            >
+              show stats
+            </button>
+          </Options>
         </Fade>
       </Wrapper>
     </Layout>

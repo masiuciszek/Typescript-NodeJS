@@ -10,6 +10,7 @@ export const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       currentQuestion: 0,
       quizData,
       hasAnsweredLastQuestion: false,
+      answeredData: [],
     },
     states: {
       idle: {
@@ -52,14 +53,26 @@ export const quizMachine = createMachine<QuizGameContext, QuizMachineEvent>(
       },
       checking: {
         on: {
-          CLICK: {
+          [EVENTS.CLICK]: {
             target: "viewStats",
+          },
+          [EVENTS.TOGGLE]: {
+            target: "idle",
           },
         },
         meta: "Check stats and result",
       },
+
       viewStats: {
         meta: "View your stats",
+        on: {
+          [EVENTS.CLICK]: {
+            target: "checking",
+          },
+        },
+        entry: () => {
+          console.log("entred")
+        },
       },
     },
   },

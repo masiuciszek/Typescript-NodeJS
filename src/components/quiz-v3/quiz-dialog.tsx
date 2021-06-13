@@ -1,12 +1,12 @@
 import { css } from "@emotion/css"
 import styled from "@emotion/styled"
 import { motion } from "framer-motion"
-import { FC } from "react"
+import React, { FC } from "react"
 import { Link } from "react-router-dom"
 import { Interpreter, StateValue } from "xstate"
 import { colors, elevations, resetBtnStyles } from "../../styles/common"
 import { Fade } from "../common/fade"
-import { DialogType, pluralize, QuizGameContext, QuizMachineEvent } from "./utils"
+import { Answer, DialogType, pluralize, QuizGameContext, QuizMachineEvent } from "./utils"
 
 interface Props {
   isQuizDone: boolean
@@ -14,6 +14,7 @@ interface Props {
   meta: Record<string, string>
   currentState: StateValue
   send: Interpreter<QuizGameContext, any, QuizMachineEvent>["send"]
+  answeredData: Answer[]
   resultData: {
     score: number
     ofPossibleQuestions: number
@@ -115,6 +116,7 @@ const QuizDialog: FC<Props> = ({
   meta,
   currentState,
   send,
+  answeredData,
 }) => {
   return (
     <Fade isAnimated={isQuizDone} className={styles}>
@@ -141,7 +143,11 @@ const QuizDialog: FC<Props> = ({
         {dialogType === "SHOW_STATS" && (
           <Body>
             <h3>{meta[`quiz.${currentState}`]}</h3>
-            <h1>Your stats</h1>
+            <ul>
+              {/* {React.Children.toArray(
+                answeredData.map(({ answer, isTrue }) => <li>answer: {answer}</li>)
+              )} */}
+            </ul>
           </Body>
         )}
 
