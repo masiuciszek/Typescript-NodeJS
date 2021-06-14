@@ -3198,6 +3198,11 @@ natural-compare@^1.4.0:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-seo@^4.24.0:
+  version "4.24.0"
+  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/next-seo/-/next-seo-4.24.0.tgz#7c0447da00b8574dcda5c6979771a7f6efd24f55"
+  integrity sha1-fARH2gC4V03NpcaXl3Gn9u/ST1U=
+
 next@10.2.3:
   version "10.2.3"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/next/-/next-10.2.3.tgz#5aa058a63626338cea91c198fda8f2715c058394"

@@ -1,5 +1,6 @@
-import Head from "next/head";
-import Image from "next/image";
+import Head from "next/head"
+// import Image from "next/image"
+// import {NextSeo} from "next-seo"
 
 export default function Home() {
   return (
@@ -11,5 +12,13 @@ export default function Home() {
       </Head>
       <h1>hello</h1>
     </div>
-  );
+  )
+}
+
+{
+  /* <NextSeo
+        title="React quiz App"
+        description="Different versions of elegant quiz apps"
+        canonical="https://www.canonicalurl.ie/"
+      /> */
 }
