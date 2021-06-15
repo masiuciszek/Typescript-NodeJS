@@ -1,14 +1,14 @@
 import {render, screen} from "@testing-library/react"
-import {Main} from "../main"
+import {Main as MainComp} from "../main"
 
 describe("main", () => {
-  test("renders children ", () => {
+  test("renders children as expected", () => {
     render(
-      <Main>
-        <p>ssadsa</p>
-      </Main>,
+      <MainComp>
+        <p>children</p>
+      </MainComp>,
     )
-    expect(5).toBe(5)
-    // screen.debug()
+
+    expect(screen.getByText(/children/i)).toBeInTheDocument()
   })
 })

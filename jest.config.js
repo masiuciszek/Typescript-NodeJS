@@ -1,21 +1,36 @@
 module.exports = {
   roots: ["<rootDir>"],
   clearMocks: true,
+  preset: "jest-playwright-jsdom",
   coverageDirectory: ".coverage",
+  collectCoverageFrom: [
+    "**/*.{js,jsx,ts,tsx}",
+    "!**/*.d.ts",
+    "!**/node_modules/**",
+  ],
   moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
   testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next)[/\\\\]"],
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
-  testRegex: "(/__tests__/.*(test|spec))\\.([tj]sx?)$",
+  setupFilesAfterEnv: ["<rootDir>/setup-tests.js"],
+
+  testRegex: [
+    "(/__tests__/.*(test|spec))\\.([tj]sx?)$",
+    "/node_modules/",
+    "/.next/",
+    "/.vercel/",
+    "/cypress/",
+  ],
   transform: {
-    "^.+\\.(ts|tsx|js)$": "babel-jest",
+    // "^.+\\.(ts|tsx|js)$": "babel-jest",
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.css$": "<rootDir>/config/jest/css-transform.js",
   },
-  testEnvironment: "node",
+
   watchPlugins: [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["./jest.setup.js"],
+
   moduleNameMapper: {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/file-mock.js",

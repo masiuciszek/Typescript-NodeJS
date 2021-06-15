@@ -1,9 +1,7 @@
 import {FC} from "react"
 import {Main} from "./main"
 
-interface Props {}
-
-const Layout: FC<Props> = ({children}) => {
+const Layout: FC = ({children}) => {
   return (
     <>
       <Main>{children}</Main>
