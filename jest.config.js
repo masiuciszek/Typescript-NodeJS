@@ -1,32 +1,29 @@
 module.exports = {
-  collectCoverageFrom: [
-    "**/*.{js,jsx,ts,tsx}",
-    "!**/*.d.ts",
-    "!**/node_modules/**",
-  ],
-  setupFilesAfterEnv: ["<rootDir>/setup-tests.js"],
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "/.next/",
-    "/.vercel/",
-    "/cypress/",
-  ],
+  roots: ["<rootDir>"],
+  clearMocks: true,
+  coverageDirectory: ".coverage",
+  moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
+  testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next)[/\\\\]"],
+  transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
+  testRegex: "(/__tests__/.*(test|spec))\\.([tj]sx?)$",
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-    "^.+\\.css$": "<rootDir>/config/jest/css-transform.js",
+    "^.+\\.(ts|tsx|js)$": "babel-jest",
   },
-  transformIgnorePatterns: [
-    "/node_modules/",
-    "^.+\\.module\\.(css|sass|scss)$",
+  testEnvironment: "node",
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
   ],
+  // A list of paths to modules that run some code to configure or set up the testing framework before each test
+  setupFilesAfterEnv: ["./jest.setup.js"],
   moduleNameMapper: {
-    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+    "\\.(css|less|sass|scss)$": "identity-obj-proxy",
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/file-mock.js",
-    "@components(.*)$": "<rootDir>/components$1",
-    "@styles/(.*)": "<rootDir>/styles/$1",
-    "@hooks/(.*)": "<rootDir>/hooks/$1",
-    "@context/(.*)": "<rootDir>/context/$1",
-    "@utils/(.*)": "<rootDir>/utils/$1",
-    "@test/(.*)": "<rootDir>/test/$1",
+    "^@/components(.*)$": "<rootDir>/src/components$1",
+
+    // "@components(.*)$": "<rootDir>/src/components$1",
+    // "@styles/(.*)": "<rootDir>/src/styles/$1",
+    // "@hooks/(.*)": "<rootDir>/src/hooks/$1",
+    // "@utils/(.*)": "<rootDir>/src/utils/$1",
   },
 }

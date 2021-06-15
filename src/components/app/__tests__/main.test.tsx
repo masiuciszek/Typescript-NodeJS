@@ -5,9 +5,10 @@ describe("main", () => {
   test("renders children ", () => {
     render(
       <Main>
-        <p>children</p>
+        <p>ssadsa</p>
       </Main>,
     )
+    expect(5).toBe(5)
     // screen.debug()
   })
 })

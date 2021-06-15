@@ -816,6 +816,13 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
+"@testing-library/user-event@^13.1.9":
+  version "13.1.9"
+  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@testing-library/user-event/-/user-event-13.1.9.tgz#29e49a42659ac3c1023565ff56819e0153a82e99"
+  integrity sha1-KeSaQmWaw8ECNWX/VoGeAVOoLpk=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
@@ -890,7 +897,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*":
+"@types/jest@*", "@types/jest@^26.0.23":
   version "26.0.23"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/jest/-/jest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
   integrity sha1-obfqs8UDuARR0BnvtYjsY1Iu5Oc=
@@ -1153,7 +1160,7 @@ ansi-colors@^4.1.1:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
   integrity sha1-y7muJWv3UK8eqzRPIpqif+lLo0g=
 
-ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
+ansi-escapes@^4.2.1, ansi-escapes@^4.3.0, ansi-escapes@^4.3.1:
   version "4.3.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
   integrity sha1-ayKR0dt9mLZSHV8e+kLQ86n+tl4=
@@ -2252,6 +2259,11 @@ eslint-config-react-app@^6.0.0:
   integrity sha1-zP+fyONrMikChEy9eRl5gr41Wg4=
   dependencies:
     confusing-browser-globals "^1.0.10"
+
+eslint-import-resolver-alias@^1.1.2:
+  version "1.1.2"
+  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.2.tgz#297062890e31e4d6651eb5eba9534e1f6e68fc97"
+  integrity sha1-KXBiiQ4x5NZlHrXrqVNOH25o/Jc=
 
 eslint-import-resolver-node@^0.3.4:
   version "0.3.4"
@@ -3465,7 +3477,7 @@ jest-pnp-resolver@^1.2.2:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
   integrity sha1-twSsCuAoqJEIpNBAs/kZ393I4zw=
 
-jest-regex-util@^27.0.1:
+jest-regex-util@^27.0.0, jest-regex-util@^27.0.1:
   version "27.0.1"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-regex-util/-/jest-regex-util-27.0.1.tgz#69d4b1bf5b690faa3490113c47486ed85dd45b68"
   integrity sha1-adSxv1tpD6o0kBE8R0hu2F3UW2g=
@@ -3616,7 +3628,20 @@ jest-validate@^27.0.2:
     leven "^3.1.0"
     pretty-format "^27.0.2"
 
-jest-watcher@^27.0.2:
+jest-watch-typeahead@^0.6.4:
+  version "0.6.4"
+  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-watch-typeahead/-/jest-watch-typeahead-0.6.4.tgz#ea70bf1bec34bd4f55b5b72d471b02d997899c3e"
+  integrity sha1-6nC/G+w0vU9VtbctRxsC2ZeJnD4=
+  dependencies:
+    ansi-escapes "^4.3.1"
+    chalk "^4.0.0"
+    jest-regex-util "^27.0.0"
+    jest-watcher "^27.0.0"
+    slash "^3.0.0"
+    string-length "^4.0.1"
+    strip-ansi "^6.0.0"
+
+jest-watcher@^27.0.0, jest-watcher@^27.0.2:
   version "27.0.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-watcher/-/jest-watcher-27.0.2.tgz#dab5f9443e2d7f52597186480731a8c6335c5deb"
   integrity sha1-2rX5RD4tf1JZcYZIBzGoxjNcXes=
