@@ -1,0 +1,18 @@
+[
+  {
+    "name": "quiz 1",
+    "path": "with-state"
+  },
+  {
+    "name": "quiz 2",
+    "path": "with-reducer"
+  },
+  {
+    "name": "quiz 3",
+    "path": "with-xstate"
+  },
+  {
+    "name": "quiz 4",
+    "path": "with-recoil"
+  }
+]

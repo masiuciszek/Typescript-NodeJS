@@ -1,8 +1,10 @@
-import React from "react"
+import {useRouter} from "next/dist/client/router"
 
 interface Props {}
 
-const QuizItem = (props: Props) => {
+const QuizItem = () => {
+  const router = useRouter()
+  console.log(router.query)
   return (
     <div>
       <h1>QuizItem</h1>
