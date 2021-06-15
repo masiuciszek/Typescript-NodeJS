@@ -3432,13 +3432,6 @@
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha1-nAiGeYdvN061mD8VDUeHqm+zLX4=
 
-"@types/wait-on@^5.2.0":
-  version "5.3.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/wait-on/-/wait-on-5.3.0.tgz#2d98fba6513fb2e82bb642e7fb3cb109a796d8fa"
-  integrity sha1-LZj7plE/sugrtkLn+zyxCaeW2Po=
-  dependencies:
-    "@types/node" "*"
-
 "@types/webpack-env@^1.16.0":
   version "1.16.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/webpack-env/-/webpack-env-1.16.0.tgz#8c0a9435dfa7b3b1be76562f3070efb3f92637b4"
@@ -5755,11 +5748,6 @@ commander@^2.19.0, commander@^2.20.0:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
 
-commander@^3.0.2:
-  version "3.0.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/commander/-/commander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
-  integrity sha1-aDfD+2d62ZM9HPukLdFNURfWs54=
-
 commander@^4.1.1:
   version "4.1.1"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
@@ -6217,14 +6205,6 @@ csstype@^3.0.2:
   version "3.0.8"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha1-0iZqeScp+yJ80hb7Vy9Dco4a00A=
-
-cwd@^0.10.0:
-  version "0.10.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/cwd/-/cwd-0.10.0.tgz#172400694057c22a13b0cf16162c7e4b7a7fe567"
-  integrity sha1-FyQAaUBXwioTsM8WFix+S3p/5Wc=
-  dependencies:
-    find-pkg "^0.1.2"
-    fs-exists-sync "^0.1.0"
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -7427,23 +7407,6 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-expand-tilde@^1.2.2:
-  version "1.2.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/expand-tilde/-/expand-tilde-1.2.2.tgz#0b81eba897e5a3d31d1c3d102f8f01441e559449"
-  integrity sha1-C4HrqJflo9MdHD0QL48BRB5VlEk=
-  dependencies:
-    os-homedir "^1.0.1"
-
-expect-playwright@^0.2.5:
-  version "0.2.6"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/expect-playwright/-/expect-playwright-0.2.6.tgz#fb690763ea386c6b88494512119817beb2c61cf1"
-  integrity sha1-+2kHY+o4bGuISUUSEZgXvrLGHPE=
-
-expect-playwright@^0.4.0:
-  version "0.4.1"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/expect-playwright/-/expect-playwright-0.4.1.tgz#363c84d72d3d4ded0b30e49c68cb8f90bd896661"
-  integrity sha1-NjyE1y09Te0LMOScaMuPkL2JZmE=
-
 expect@^27.0.2:
   version "27.0.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/expect/-/expect-27.0.2.tgz#e66ca3a4c9592f1c019fa1d46459a9d2084f3422"
@@ -7741,30 +7704,6 @@ find-cache-dir@^2.0.0, find-cache-dir@^2.1.0:
     make-dir "^2.0.0"
     pkg-dir "^3.0.0"
 
-find-file-up@^0.1.2:
-  version "0.1.3"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/find-file-up/-/find-file-up-0.1.3.tgz#cf68091bcf9f300a40da411b37da5cce5a2fbea0"
-  integrity sha1-z2gJG8+fMApA2kEbN9pczlovvqA=
-  dependencies:
-    fs-exists-sync "^0.1.0"
-    resolve-dir "^0.1.0"
-
-find-pkg@^0.1.2:
-  version "0.1.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/find-pkg/-/find-pkg-0.1.2.tgz#1bdc22c06e36365532e2a248046854b9788da557"
-  integrity sha1-G9wiwG42NlUy4qJIBGhUuXiNpVc=
-  dependencies:
-    find-file-up "^0.1.2"
-
-find-process@^1.4.4:
-  version "1.4.4"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/find-process/-/find-process-1.4.4.tgz#52820561162fda0d1feef9aed5d56b3787f0fd6e"
-  integrity sha1-UoIFYRYv2g0f7vmu1dVrN4fw/W4=
-  dependencies:
-    chalk "^4.0.0"
-    commander "^5.1.0"
-    debug "^4.1.1"
-
 find-replace@^3.0.0:
   version "3.0.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/find-replace/-/find-replace-3.0.0.tgz#3e7e23d3b05167a76f770c9fbd5258b0def68c38"
@@ -7955,11 +7894,6 @@ fromentries@^1.2.0:
   version "1.3.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/fromentries/-/fromentries-1.3.2.tgz#e4bca6808816bf8f93b52750f1127f5a6fd86e3a"
   integrity sha1-5LymgIgWv4+TtSdQ8RJ/Wm/Ybjo=
-
-fs-exists-sync@^0.1.0:
-  version "0.1.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/fs-exists-sync/-/fs-exists-sync-0.1.0.tgz#982d6893af918e72d08dec9e8673ff2b5a8d6add"
-  integrity sha1-mC1ok6+RjnLQjeyehnP/K1qNat0=
 
 fs-extra@9.0.0:
   version "9.0.0"
@@ -8234,24 +8168,6 @@ global-modules@2.0.0:
   integrity sha1-mXYFrSNF8n9RU5vqJldEISFcd4A=
   dependencies:
     global-prefix "^3.0.0"
-
-global-modules@^0.2.3:
-  version "0.2.3"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/global-modules/-/global-modules-0.2.3.tgz#ea5a3bed42c6d6ce995a4f8a1269b5dae223828d"
-  integrity sha1-6lo77ULG1s6ZWk+KEmm12uIjgo0=
-  dependencies:
-    global-prefix "^0.1.4"
-    is-windows "^0.2.0"
-
-global-prefix@^0.1.4:
-  version "0.1.5"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/global-prefix/-/global-prefix-0.1.5.tgz#8d3bc6b8da3ca8112a160d8d496ff0462bfef78f"
-  integrity sha1-jTvGuNo8qBEqFg2NSW/wRiv+948=
-  dependencies:
-    homedir-polyfill "^1.0.0"
-    ini "^1.3.4"
-    is-windows "^0.2.0"
-    which "^1.2.12"
 
 global-prefix@^3.0.0:
   version "3.0.0"
@@ -8594,13 +8510,6 @@ hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1:
   dependencies:
     react-is "^16.7.0"
 
-homedir-polyfill@^1.0.0:
-  version "1.0.3"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/homedir-polyfill/-/homedir-polyfill-1.0.3.tgz#743298cef4e5af3e194161fbadcc2151d3a058e8"
-  integrity sha1-dDKYzvTlrz4ZQWH7rcwhUdOgWOg=
-  dependencies:
-    parse-passwd "^1.0.0"
-
 hosted-git-info@^2.1.4:
   version "2.8.9"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
@@ -8898,7 +8807,7 @@ ini@1.3.7:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/ini/-/ini-1.3.7.tgz#a09363e1911972ea16d7a8851005d84cf09a9a84"
   integrity sha1-oJNj4ZEZcuoW16iFEAXYTPCamoQ=
 
-ini@^1.3.4, ini@^1.3.5:
+ini@^1.3.5:
   version "1.3.8"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha1-op2kJbSIBvNHZ6Tvzjlyaa8oQyw=
@@ -9371,11 +9280,6 @@ is-window@^1.0.2:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/is-window/-/is-window-1.0.2.tgz#2c896ca53db97de45d3c33133a65d8c9f563480d"
   integrity sha1-LIlspT25feRdPDMTOmXYyfVjSA0=
 
-is-windows@^0.2.0:
-  version "0.2.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/is-windows/-/is-windows-0.2.0.tgz#de1aa6d63ea29dd248737b69f1ff8b8002d2108c"
-  integrity sha1-3hqm1j6indJIc3tp8f+LgALSEIw=
-
 is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
@@ -9772,46 +9676,10 @@ jest-mock@^27.0.3:
     "@jest/types" "^27.0.2"
     "@types/node" "*"
 
-jest-playwright-jsdom@^0.0.4:
-  version "0.0.4"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-playwright-jsdom/-/jest-playwright-jsdom-0.0.4.tgz#725f36491b866ff221659dd0bc5a3bfa3629a4a3"
-  integrity sha1-cl82SRuGb/IhZZ3QvFo7+jYppKM=
-  dependencies:
-    expect-playwright "^0.2.5"
-    jest-playwright-preset "^1.2.1"
-
-jest-playwright-preset@^1.2.1:
-  version "1.6.1"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-playwright-preset/-/jest-playwright-preset-1.6.1.tgz#1f01339f7c9ccfb3bb356ca67d073e790d4470e4"
-  integrity sha1-HwEzn3ycz7O7NWymfQc+eQ1EcOQ=
-  dependencies:
-    expect-playwright "^0.4.0"
-    jest-process-manager "^0.3.1"
-    nyc "^15.1.0"
-    playwright-core ">=1.2.0"
-    rimraf "^3.0.2"
-    uuid "^8.3.2"
-
 jest-pnp-resolver@^1.2.2:
   version "1.2.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-pnp-resolver/-/jest-pnp-resolver-1.2.2.tgz#b704ac0ae028a89108a4d040b3f919dfddc8e33c"
   integrity sha1-twSsCuAoqJEIpNBAs/kZ393I4zw=
-
-jest-process-manager@^0.3.1:
-  version "0.3.1"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/jest-process-manager/-/jest-process-manager-0.3.1.tgz#e748da83ea66ac5073087feb1150ba1270332b2e"
-  integrity sha1-50jag+pmrFBzCH/rEVC6EnAzKy4=
-  dependencies:
-    "@types/wait-on" "^5.2.0"
-    chalk "^4.1.0"
-    cwd "^0.10.0"
-    exit "^0.1.2"
-    find-process "^1.4.4"
-    prompts "^2.4.1"
-    signal-exit "^3.0.3"
-    spawnd "^5.0.0"
-    tree-kill "^1.2.2"
-    wait-on "^5.3.0"
 
 jest-regex-util@^26.0.0:
   version "26.0.0"
@@ -11384,7 +11252,7 @@ nwsapi@^2.2.0:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha1-IEh5qePQaP8qVROcLHcngGgaOLc=
 
-nyc@15.1.0, nyc@^15.1.0:
+nyc@15.1.0:
   version "15.1.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/nyc/-/nyc-15.1.0.tgz#1335dae12ddc87b6e249d5a1994ca4bdaea75f02"
   integrity sha1-EzXa4S3ch7biSdWhmUykva6nXwI=
@@ -11599,11 +11467,6 @@ os-browserify@0.3.0, os-browserify@^0.3.0, os-browserify@~0.3.0:
   version "0.3.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
   integrity sha1-hUNzx/XCMVkU/Jv8a9gjj92h7Cc=
-
-os-homedir@^1.0.1:
-  version "1.0.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
-  integrity sha1-/7xJiDNuDoM94MFox+8VISGqf7M=
 
 ospath@^1.2.2:
   version "1.2.2"
@@ -11847,11 +11710,6 @@ parse-link-header@^1.0.1:
   dependencies:
     xtend "~4.0.1"
 
-parse-passwd@^1.0.0:
-  version "1.0.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
-  integrity sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=
-
 parse5@6.0.1, parse5@^6.0.0:
   version "6.0.1"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
@@ -12043,26 +11901,6 @@ platform@1.3.6:
   version "1.3.6"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
   integrity sha1-SLTOmDFksgnC1FoQetsx9HOm56c=
-
-playwright-core@>=1.2.0:
-  version "1.12.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/playwright-core/-/playwright-core-1.12.2.tgz#d525c83b7b891708235f5b317164d2acf80e4357"
-  integrity sha1-1SXIO3uJFwgjX1sxcWTSrPgOQ1c=
-  dependencies:
-    commander "^6.1.0"
-    debug "^4.1.1"
-    extract-zip "^2.0.1"
-    https-proxy-agent "^5.0.0"
-    jpeg-js "^0.4.2"
-    mime "^2.4.6"
-    pngjs "^5.0.0"
-    progress "^2.0.3"
-    proper-lockfile "^4.1.1"
-    proxy-from-env "^1.1.0"
-    rimraf "^3.0.2"
-    stack-utils "^2.0.3"
-    ws "^7.4.6"
-    yazl "^2.5.1"
 
 playwright@^1.12.2:
   version "1.12.2"
@@ -12667,7 +12505,7 @@ prompts@2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prompts@^2.0.1, prompts@^2.4.0, prompts@^2.4.1:
+prompts@^2.0.1, prompts@^2.4.0:
   version "2.4.1"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/prompts/-/prompts-2.4.1.tgz#befd3b1195ba052f9fd2fde8a486c4e82ee77f61"
   integrity sha1-vv07EZW6BS+f0v3opIbE6C7nf2E=
@@ -13426,14 +13264,6 @@ resolve-cwd@^3.0.0:
   dependencies:
     resolve-from "^5.0.0"
 
-resolve-dir@^0.1.0:
-  version "0.1.1"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/resolve-dir/-/resolve-dir-0.1.1.tgz#b219259a5602fac5c5c496ad894a6e8cc430261e"
-  integrity sha1-shklmlYC+sXFxJatiUpujMQwJh4=
-  dependencies:
-    expand-tilde "^1.2.2"
-    global-modules "^0.2.3"
-
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
@@ -14008,16 +13838,6 @@ spawn-wrap@^2.0.0:
     rimraf "^3.0.0"
     signal-exit "^3.0.2"
     which "^2.0.1"
-
-spawnd@^5.0.0:
-  version "5.0.0"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/spawnd/-/spawnd-5.0.0.tgz#ea72200bdc468998e84e1c3e7b914ce85fc1c32c"
-  integrity sha1-6nIgC9xGiZjoThw+e5FM6F/Bwyw=
-  dependencies:
-    exit "^0.1.2"
-    signal-exit "^3.0.3"
-    tree-kill "^1.2.2"
-    wait-port "^0.2.9"
 
 spdx-correct@^3.0.0:
   version "3.1.1"
@@ -14893,11 +14713,6 @@ tr46@^2.1.0:
   dependencies:
     punycode "^2.1.1"
 
-tree-kill@^1.2.2:
-  version "1.2.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
-  integrity sha1-TKCakJLIi3OnzcXooBtQeweQoMw=
-
 trim-trailing-lines@^1.0.0:
   version "1.1.4"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/trim-trailing-lines/-/trim-trailing-lines-1.1.4.tgz#bd4abbec7cc880462f10b2c8b5ce1d8d1ec7c2c0"
@@ -15410,11 +15225,6 @@ uuid@^3.3.2, uuid@^3.3.3:
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4=
 
-uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha1-gNW1ztJxu5r2xEXyGhoExgbO++I=
-
 v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
@@ -15502,7 +15312,7 @@ w3c-xmlserializer@^2.0.0:
   dependencies:
     xml-name-validator "^3.0.0"
 
-wait-on@5.3.0, wait-on@^5.3.0:
+wait-on@5.3.0:
   version "5.3.0"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/wait-on/-/wait-on-5.3.0.tgz#584e17d4b3fe7b46ac2b9f8e5e102c005c2776c7"
   integrity sha1-WE4X1LP+e0asK5+OXhAsAFwndsc=
@@ -15512,15 +15322,6 @@ wait-on@5.3.0, wait-on@^5.3.0:
     lodash "^4.17.21"
     minimist "^1.2.5"
     rxjs "^6.6.3"
-
-wait-port@^0.2.9:
-  version "0.2.9"
-  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/wait-port/-/wait-port-0.2.9.tgz#3905cf271b5dbe37a85c03b85b418b81cb24ee55"
-  integrity sha1-OQXPJxtdvjeoXAO4W0GLgcsk7lU=
-  dependencies:
-    chalk "^2.4.2"
-    commander "^3.0.2"
-    debug "^4.1.1"
 
 walker@^1.0.7, walker@~1.0.5:
   version "1.0.7"
@@ -15809,7 +15610,7 @@ which-typed-array@^1.1.2:
     has-symbols "^1.0.1"
     is-typed-array "^1.1.3"
 
-which@^1.2.12, which@^1.2.9, which@^1.3.1:
+which@^1.2.9, which@^1.3.1:
   version "1.3.1"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
   integrity sha1-pFBD1U9YBTFtqNYvn1CRjT2nCwo=

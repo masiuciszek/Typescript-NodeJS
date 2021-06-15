@@ -1,7 +1,12 @@
-import {render} from "@testing-library/react"
+import {render, screen} from "@testing-library/react"
 import HomePage from "../"
 
-test("should", () => {
-  render(<HomePage />)
-  expect(5).toBe(5)
+describe("Home page", () => {
+  test("everything should be rendered and displayed as expected", () => {
+    render(<HomePage />)
+
+    expect(screen.getByText(/react quiz app/i)).toBeInTheDocument()
+
+    screen.debug()
+  })
 })

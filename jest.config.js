@@ -1,13 +1,17 @@
 module.exports = {
   roots: ["<rootDir>"],
   clearMocks: true,
-  preset: "jest-playwright-jsdom",
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
   coverageDirectory: ".coverage",
   collectCoverageFrom: [
     "**/*.{js,jsx,ts,tsx}",
     "!**/*.d.ts",
     "!**/node_modules/**",
   ],
+
   moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
   testPathIgnorePatterns: ["<rootDir>[/\\\\](node_modules|.next)[/\\\\]"],
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$"],
@@ -30,7 +34,7 @@ module.exports = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
-
+  testEnvironment: "jsdom",
   moduleNameMapper: {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/file-mock.js",

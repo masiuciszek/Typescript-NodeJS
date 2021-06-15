@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react"
 import {Main as MainComp} from "../main"
 
 describe("main", () => {
-  test("renders children as expected", () => {
+  test("renders children", () => {
     render(
       <MainComp>
         <p>children</p>

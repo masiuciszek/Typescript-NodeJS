@@ -1,10 +1,11 @@
 import Seo from "@/components/common/seo"
+import Title from "@/components/common/title"
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Seo />
-      <h1>hello</h1>
-    </div>
+      <Title title="React quiz app" />
+    </>
   )
 }
