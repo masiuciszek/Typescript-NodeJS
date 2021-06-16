@@ -12,32 +12,34 @@ import {
 import Seo from "@/components/common/seo"
 
 const END_POINTS = {
-  [WITH_STATE]: "with-state",
-  [WITH_REDUCER]: "with-reducer",
-  [WITH_XSTATE]: "with-xstate",
-  [WITH_RECOIL]: "with-recoil",
+  WITH_STATE: "with-state",
+  WITH_REDUCER: "with-reducer",
+  WITH_XSTATE: "with-xstate",
+  WITH_RECOIL: "with-recoil",
 } as const
 
-// TODO: Func to decide what quiz app we will render
-const getQuizApp = (endPoint: keyof typeof END_POINTS) => {
-  switch (endPoint) {
-    case WITH_STATE:
-      return <QuizWithState />
-    case WITH_REDUCER:
-      return <QuizWithReducer />
-    case WITH_XSTATE:
-      return <QuizWithXstate />
-    case WITH_RECOIL:
-      return <QuizWithRecoil />
+type EndPointKeys = keyof typeof END_POINTS
+type EndPointValues = typeof END_POINTS[EndPointKeys]
 
+const getQuizApp = (endPoint: EndPointValues) => {
+  switch (endPoint) {
+    case END_POINTS[WITH_STATE]:
+      return <QuizWithState />
+    case END_POINTS[WITH_REDUCER]:
+      return <QuizWithReducer />
+    case END_POINTS[WITH_XSTATE]:
+      return <QuizWithXstate />
+    case END_POINTS[WITH_RECOIL]:
+      return <QuizWithRecoil />
     default:
-      return "message component"
+      return <FallBackComponent endPoint={endPoint} />
   }
 }
 
 const QuizItem = () => {
   const router = useRouter()
-  const slug = router.query.slug as keyof typeof END_POINTS
+  const slug = router.query.slug as EndPointValues
+
   return (
     <>
       <Seo title={`quiz ${slug}`} />
@@ -48,3 +50,11 @@ const QuizItem = () => {
 }
 
 export default QuizItem
+
+function FallBackComponent({endPoint}: {endPoint: EndPointValues}) {
+  return (
+    <div>
+      <h3>No Quiz with endpoint {endPoint}</h3>
+    </div>
+  )
+}
