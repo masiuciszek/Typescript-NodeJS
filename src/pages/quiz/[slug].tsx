@@ -10,6 +10,7 @@ import {
   WITH_XSTATE,
 } from "@/utils/constants"
 import Seo from "@/components/common/seo"
+import Layout from "@/components/app/layout"
 
 const END_POINTS = {
   WITH_STATE: "with-state",
@@ -43,8 +44,10 @@ const QuizItem = () => {
   return (
     <>
       <Seo title={`quiz ${slug}`} />
-      <h1>QuizItem</h1>
-      {getQuizApp(slug)}
+      <Layout>
+        <h1>QuizItem</h1>
+        {getQuizApp(slug)}
+      </Layout>
     </>
   )
 }
