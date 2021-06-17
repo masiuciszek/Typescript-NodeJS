@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "question": "Who won world cup in football 2006?",
+    "answers": [
+      {"prefix": "1", "text": "France", "isTrue": false},
+      {"prefix": "x", "text": "Italy", "isTrue": true},
+      {"prefix": "2", "text": "Brazil", "isTrue": false}
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What company created React?",
+    "answers": [
+      {"prefix": "1", "text": "Facebook", "isTrue": true},
+      {"prefix": "x", "text": "Google", "isTrue": false},
+      {"prefix": "2", "text": "Microsoft", "isTrue": false}
+    ]
+  },
+  {
+    "id": 3,
+    "question": "typeof null is equal to?",
+    "answers": [
+      {"prefix": "1", "text": "String", "isTrue": false},
+      {"prefix": "x", "text": "Object", "isTrue": true},
+      {"prefix": "2", "text": "null", "isTrue": false}
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Who invented Javascript?",
+    "answers": [
+      {"prefix": "1", "text": "Brendan Eich", "isTrue": true},
+      {"prefix": "x", "text": "Bill Gates", "isTrue": false},
+      {"prefix": "2", "text": "Steve Jobs", "isTrue": false}
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+import quizData from "../../../data/quiz-data.json"
 const QuizWithState = () => {
   return (
     <div>

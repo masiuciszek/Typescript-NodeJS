@@ -8,6 +8,7 @@ interface ButtonProps {
   text?: string
   incomingStyles?: SerializedStyles
   onClick: () => void
+  config?: Record<string, Record<string, string | number> | string | number>
 }
 
 const BTN_MIN_WIDTH = 8
@@ -25,7 +26,13 @@ const styles = css`
   background-color: ${elements.btnBg}; ;
 `
 
-const Button: FC<ButtonProps> = ({text, incomingStyles, children, onClick}) => {
+const Button: FC<ButtonProps> = ({
+  text,
+  incomingStyles,
+  children,
+  onClick,
+  config,
+}) => {
   return (
     <motion.button
       whileHover={{
@@ -39,6 +46,7 @@ const Button: FC<ButtonProps> = ({text, incomingStyles, children, onClick}) => {
         ${styles};
         ${incomingStyles}
       `}
+      {...config}
     >
       <Predicate condition={Boolean(text)}>{text}</Predicate>
       {children}
