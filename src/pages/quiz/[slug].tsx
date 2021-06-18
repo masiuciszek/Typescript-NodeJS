@@ -44,10 +44,7 @@ const QuizItem = () => {
   return (
     <>
       <Seo title={`quiz ${slug}`} />
-      <Layout>
-        <h1>QuizItem</h1>
-        {getQuizApp(slug)}
-      </Layout>
+      <Layout>{getQuizApp(slug)}</Layout>
     </>
   )
 }

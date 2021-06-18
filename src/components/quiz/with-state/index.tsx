@@ -3,21 +3,41 @@ import {useEffect, useState} from "react"
 import quizData from "../../../data/quiz-data.json"
 import Button from "@/components/styled/button"
 import produce from "immer"
-import {AnimatePresence, motion} from "framer-motion"
-import {elements} from "@/styles/styled-record"
+import AnimateWrapper from "@/components/common/animate-wrapper"
+import GameDialog from "@/components/common/game-dialog"
+import Title from "@/components/common/title"
 import {css} from "@emotion/react"
+import {elements, elevations} from "@/styles/styled-record"
+
+const titleStyles = css`
+  justify-content: center;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+`
 
 const GameWrapper = styled.div`
   position: relative;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 const QuizWrapper = styled.div`
-  border: 1px solid #000;
   display: flex;
+  min-height: 14rem;
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid ${elements.paragraph};
+  border-radius: 4px;
+  box-shadow: ${elevations.shadowLg};
+  background-color: ${elements.blueishShadow};
+  color: ${elements.background};
+
   .question {
     display: flex;
     flex: 1 0 50%;
-    border: 1px solid #000;
     align-items: center;
     justify-content: center;
   }
@@ -32,10 +52,14 @@ const AnswersList = styled.ul`
   padding: 0;
   margin: 0;
   li {
-    border: 1px solid #000;
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0.5rem;
+    button {
+      height: 3rem;
+      min-width: 12rem;
+    }
   }
 `
 
@@ -74,18 +98,27 @@ const QuizWithState = () => {
     }
   }, [isGameDone])
 
+  const newGame = (): void => {
+    setData([])
+    setScore(0)
+    setCurrentQuestion(0)
+    setIsGameDone(false)
+    setIsModalOpen(false)
+  }
+
   return (
     <GameWrapper>
-      <AnimatePresence>
-        {isModalOpen && (
-          <WinningMessage
-            score={score}
-            possibleScore={quizData.length}
-            close={() => setIsModalOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-      <h1>QuizWithState</h1>
+      <AnimateWrapper isOn={isModalOpen}>
+        <GameDialog
+          newGame={newGame}
+          score={score}
+          possibleScore={quizData.length}
+          close={() => setIsModalOpen(false)}
+        />
+      </AnimateWrapper>
+      <Title incomingStyles={titleStyles}>
+        <h1>QuizWithState</h1>
+      </Title>
       <QuizWrapper>
         <div className="question">
           <p>{quizData[currentQuestion].question}</p>
@@ -93,88 +126,15 @@ const QuizWithState = () => {
         <AnswersList>
           {quizData[currentQuestion].answers.map(({prefix, text, isTrue}) => (
             <li key={prefix}>
-              <Button
-                disabled={isGameDone}
-                onClick={() => handleClick({isTrue, text, prefix})}
-              >
+              <Button disabled={isGameDone} onClick={() => handleClick({isTrue, text, prefix})}>
                 {text}
               </Button>
             </li>
           ))}
         </AnswersList>
-        {isGameDone && (
-          <Button onClick={() => setIsModalOpen(true)}>
-            {" "}
-            show game result{" "}
-          </Button>
-        )}
+        {isGameDone && <Button onClick={() => setIsModalOpen(true)}> show game result </Button>}
       </QuizWrapper>
     </GameWrapper>
   )
 }
 export default QuizWithState
-
-interface WinningMessageProps {
-  score: number
-  possibleScore: number
-  close: () => void
-}
-
-const MessageWrapper = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  background-color: ${elements.blueishShadow};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .body {
-    background-color: ${elements.background};
-    border-radius: 4px;
-    padding: 0.5rem;
-    position: relative;
-
-    button {
-    }
-  }
-`
-
-const buttonStyles = css`
-  position: absolute;
-  top: -1rem;
-  right: -1rem;
-  border-radius: 50%;
-  min-width: 0;
-  height: 3rem;
-  width: 3rem;
-  padding: 0;
-  background-color: ${elements.danger};
-`
-
-function WinningMessage({score, possibleScore, close}: WinningMessageProps) {
-  return (
-    <MessageWrapper
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
-    >
-      <div className="body">
-        <p>
-          you scored {score}/{possibleScore} questions{" "}
-        </p>
-        <p>Great job</p>
-        <Button
-          incomingStyles={buttonStyles}
-          onClick={close}
-          config={{whileHover: {width: "2.9rem", height: "2.9rem"}}}
-        >
-          ╳
-        </Button>
-      </div>
-    </MessageWrapper>
-  )
-}
