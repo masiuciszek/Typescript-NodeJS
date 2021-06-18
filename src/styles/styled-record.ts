@@ -9,6 +9,8 @@ export const elements = {
   blueishShadow: "var(--blueish-shadow)",
   lightBlueShadow: "var(--light-blue-shadow)",
   greyBlueShadow: "var(--grey-blue-shadow)",
+  background: "var(--background)",
+  danger: "var(--danger)",
 }
 export const elevations = {
   shadowXs: "var(--sh-xs)",

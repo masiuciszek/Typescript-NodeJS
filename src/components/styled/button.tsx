@@ -9,6 +9,7 @@ interface ButtonProps {
   incomingStyles?: SerializedStyles
   onClick: () => void
   config?: Record<string, Record<string, string | number> | string | number>
+  disabled?: boolean
 }
 
 const BTN_MIN_WIDTH = 8
@@ -23,7 +24,12 @@ const styles = css`
   display: block;
   margin-bottom: 0.5rem;
   color: ${elements.btnText};
-  background-color: ${elements.btnBg}; ;
+  background-color: ${elements.btnBg};
+  &:disabled {
+    opacity: 0.6;
+    color: ${elements.stroke};
+    pointer-events: none;
+  }
 `
 
 const Button: FC<ButtonProps> = ({
@@ -32,9 +38,11 @@ const Button: FC<ButtonProps> = ({
   children,
   onClick,
   config,
+  disabled,
 }) => {
   return (
     <motion.button
+      disabled={disabled || false}
       whileHover={{
         backgroundColor: elements.btnText,
         color: elements.btnBg,

@@ -30,6 +30,7 @@ const GlobalStyles = () => (
         --tertiary: var(--red);
         --secondary: var(--grey-blue);
         --stroke: var(--blueish);
+        --danger: var(--red);
 
         /* Define Colors intentions */
         --background: var(--whitish);
