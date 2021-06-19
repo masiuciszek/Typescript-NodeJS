@@ -80,9 +80,14 @@ const QuizWithState = () => {
     if (isTrue) {
       setScore(produce((prevScore) => prevScore + 1))
     }
-    const xs = [...data]
-    xs.push({text, isTrue, prefix})
-    setData(xs)
+    // const xs = [...data]
+    // xs.push({text, isTrue, prefix})
+    // setData(xs)
+
+    setData((prev) => {
+      const xs = [...prev, {text, isTrue, prefix}]
+      return xs
+    })
     const nextQuestion = currentQuestion + 1
 
     if (nextQuestion < quizData.length) {
@@ -105,6 +110,7 @@ const QuizWithState = () => {
     setIsGameDone(false)
     setIsModalOpen(false)
   }
+  console.log({data})
 
   return (
     <GameWrapper>
