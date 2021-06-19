@@ -1,15 +1,17 @@
-import styled from "@emotion/styled"
-import paths from "../../data/routes.json"
-import Link from "next/link"
 import useToggle from "src/hooks/toggle"
 import Button from "@/components/styled/button"
-import {motion} from "framer-motion"
 import Cmd from "@/components/common/icons/cmd"
 import {css} from "@emotion/react"
-import AnimateWrapper from "@/components/common/animate-wrapper"
 import useKeyPress from "@/hooks/key-press"
 import {useEffect} from "react"
-import {elements} from "@/styles/styled-record"
+import {elements, elevations} from "@/styles/styled-record"
+import Navigation from "./nav"
+
+const headerStyles = css`
+  box-shadow: ${elevations.shadowLg};
+  min-height: 8rem;
+  border-bottom: 2px solid ${elements.stroke};
+`
 
 const cmdButtonStyles = css`
   min-width: 0;
@@ -20,22 +22,6 @@ const cmdButtonStyles = css`
   z-index: 10;
   span {
     text-shadow: 1px 1px ${elements.paragraph};
-  }
-`
-
-const NavList = styled(motion.ul)`
-  background-color: ${elements.background};
-  padding: 1rem;
-  min-width: 14rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  li {
-    font-size: 1.2em;
-  }
-
-  a {
-    text-decoration: none;
   }
 `
 
@@ -55,31 +41,15 @@ export const Header = () => {
   }, [kEventIsDown])
 
   return (
-    <header>
-      <h1>Header</h1>
-
+    <header
+      css={css`
+        ${headerStyles};
+      `}
+    >
       <Button onClick={toggleConfig} incomingStyles={cmdButtonStyles}>
         <Cmd /> <span>cmd+k</span>
       </Button>
-
-      <nav>
-        <AnimateWrapper isOn={showConfig}>
-          <NavList initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-            <li>
-              <Link href="/">
-                <a>home</a>
-              </Link>
-            </li>
-            {paths.map(({name, path}) => (
-              <li key={name}>
-                <Link href={`/quiz/${path}`}>
-                  <a>{name}</a>
-                </Link>
-              </li>
-            ))}
-          </NavList>
-        </AnimateWrapper>
-      </nav>
+      <Navigation showConfig={showConfig} />
     </header>
   )
 }

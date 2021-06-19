@@ -7,7 +7,8 @@ import AnimateWrapper from "@/components/common/animate-wrapper"
 import GameDialog from "@/components/common/game-dialog"
 import Title from "@/components/common/title"
 import {css} from "@emotion/react"
-import {elements, elevations} from "@/styles/styled-record"
+import {elements} from "@/styles/styled-record"
+import {Quiz} from "./quiz"
 
 const titleStyles = css`
   justify-content: center;
@@ -24,43 +25,18 @@ const GameWrapper = styled.div`
   justify-content: center;
 `
 
-const QuizWrapper = styled.div`
+const BtnWrapper = styled.div`
   display: flex;
-  min-height: 14rem;
-  padding: 1rem;
   width: 100%;
-  border: 1px solid ${elements.paragraph};
-  border-radius: 4px;
-  box-shadow: ${elevations.shadowLg};
-  background-color: ${elements.blueishShadow};
-  color: ${elements.background};
 
-  .question {
-    display: flex;
-    flex: 1 0 50%;
-    align-items: center;
-    justify-content: center;
+  button {
+    margin-left: 1rem;
   }
 `
 
-const AnswersList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 50%;
-  padding: 0;
-  margin: 0;
-  li {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem;
-    button {
-      height: 3rem;
-      min-width: 12rem;
-    }
-  }
+const showResultCss = css`
+  height: 3rem;
+  width: 8rem;
 `
 
 interface AnswerData {
@@ -80,9 +56,6 @@ const QuizWithState = () => {
     if (isTrue) {
       setScore(produce((prevScore) => prevScore + 1))
     }
-    // const xs = [...data]
-    // xs.push({text, isTrue, prefix})
-    // setData(xs)
 
     setData((prev) => {
       const xs = [...prev, {text, isTrue, prefix}]
@@ -110,7 +83,6 @@ const QuizWithState = () => {
     setIsGameDone(false)
     setIsModalOpen(false)
   }
-  console.log({data})
 
   return (
     <GameWrapper>
@@ -125,21 +97,39 @@ const QuizWithState = () => {
       <Title incomingStyles={titleStyles}>
         <h1>QuizWithState</h1>
       </Title>
-      <QuizWrapper>
-        <div className="question">
-          <p>{quizData[currentQuestion].question}</p>
-        </div>
-        <AnswersList>
-          {quizData[currentQuestion].answers.map(({prefix, text, isTrue}) => (
-            <li key={prefix}>
-              <Button disabled={isGameDone} onClick={() => handleClick({isTrue, text, prefix})}>
-                {text}
-              </Button>
-            </li>
-          ))}
-        </AnswersList>
-        {isGameDone && <Button onClick={() => setIsModalOpen(true)}> show game result </Button>}
-      </QuizWrapper>
+      <Quiz currentQuestion={currentQuestion} isGameDone={isGameDone} handleClick={handleClick} />
+      {isGameDone && (
+        <BtnWrapper>
+          <Button
+            config={{
+              whileHover: {
+                width: "8.1rem",
+                backgroundColor: elements.background,
+                color: elements.paragraph,
+              },
+            }}
+            incomingStyles={showResultCss}
+            onClick={() => setIsModalOpen(true)}
+          >
+            {" "}
+            show result{" "}
+          </Button>
+          <Button
+            config={{
+              whileHover: {
+                width: "8.1rem",
+                backgroundColor: elements.background,
+                color: elements.paragraph,
+              },
+            }}
+            incomingStyles={showResultCss}
+            onClick={newGame}
+          >
+            {" "}
+            new game
+          </Button>
+        </BtnWrapper>
+      )}
     </GameWrapper>
   )
 }

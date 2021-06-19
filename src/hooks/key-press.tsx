@@ -14,11 +14,10 @@ function useKeyPress(targetKey: string) {
     }
   }
   const upHandler = ({key}: KeyboardEvent): void => {
-    console.log("keyup")
     if (key === targetKey) {
       toFalse()
-      keyUpTorTrue()
       keyDownToFalse()
+      keyUpTorTrue()
     }
   }
 
