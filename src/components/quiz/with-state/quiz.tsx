@@ -2,6 +2,8 @@ import {elements, elevations} from "@/styles/styled-record"
 import styled from "@emotion/styled"
 import quizData from "../../../data/quiz-data.json"
 import Button from "@/components/styled/button"
+import {motion} from "framer-motion"
+import {css} from "@emotion/react"
 
 interface Props {
   currentQuestion: number
@@ -9,7 +11,7 @@ interface Props {
   handleClick: ({isTrue, text, prefix}: {isTrue: boolean; text: string; prefix: string}) => void
 }
 
-const QuizWrapper = styled.div`
+const QuizWrapper = styled(motion.div)`
   display: flex;
   min-height: 14rem;
   padding: 1rem;
@@ -48,17 +50,32 @@ const AnswersList = styled.ul`
   }
 `
 
+const spanStyles = (isGameDone: boolean) => css`
+  text-decoration: ${isGameDone ? "line-through" : null};
+`
+
 export const Quiz = ({currentQuestion, isGameDone, handleClick}: Props) => {
   return (
-    <QuizWrapper>
+    <QuizWrapper
+      initial={{opacity: 0, x: -1000}}
+      animate={{opacity: 1, x: 0}}
+      exit={{opacity: 0, x: 1000}}
+      transition={{delay: 0.2, damping: 10, stiffness: 50}}
+    >
       <div className="question">
-        <p>{quizData[currentQuestion].question}</p>
+        {isGameDone ? <p>Game is done</p> : <p>{quizData[currentQuestion].question}</p>}
       </div>
       <AnswersList>
         {quizData[currentQuestion].answers.map(({prefix, text, isTrue}) => (
           <li key={prefix}>
             <Button disabled={isGameDone} onClick={() => handleClick({isTrue, text, prefix})}>
-              {text}
+              <span
+                css={css`
+                  ${spanStyles(isGameDone)}
+                `}
+              >
+                {text}
+              </span>
             </Button>
           </li>
         ))}
