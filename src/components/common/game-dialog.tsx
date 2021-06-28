@@ -3,6 +3,7 @@ import {elements, elevations} from "@/styles/styled-record"
 import Button from "@/components/styled/button"
 import {css} from "@emotion/react"
 import styled from "@emotion/styled"
+import {motion} from "framer-motion"
 
 interface GameDialogProps {
   score: number
@@ -11,34 +12,30 @@ interface GameDialogProps {
   newGame: () => void
 }
 
-const MessageWrapper = styled.div`
-  background-color: ${elements.background};
-  border-radius: 4px;
-  padding: 1rem;
-  position: relative;
-  min-width: 24rem;
+const MessageWrapper = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: ${elements.blueishShadow};
   display: flex;
-  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  .btn-group {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-  }
-  span {
-    position: relative;
-    display: inline-block;
-    &:after {
-      content: "";
-      bottom: 2px;
-      left: 0;
-      background-color: ${elements.lightBlueShadow};
-      width: 100%;
-      height: 6px;
-      position: absolute;
-      transform: rotate(-3deg);
-      box-shadow: ${elevations.shadowLg};
+`
+
+const Body = styled.div`
+  background-color: ${elements.background};
+  width: 35rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  p {
+    font-size: 1.3rem;
+    span {
+      color: ${elements.danger};
     }
   }
 `
@@ -61,37 +58,45 @@ const newGameStyles = css`
 
 const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
   ReactDOM.createPortal(
-    <MessageWrapper>
-      <p>
-        you scored{" "}
-        <span>
-          {score}/{possibleScore}
-        </span>{" "}
-        possible questions{" "}
-      </p>
-      <p>Great job!</p>
-      <div>
+    <MessageWrapper
+      initial={{opacity: 0, x: -1000}}
+      animate={{opacity: 1, x: 0}}
+      exit={{opacity: 0, x: -1000}}
+      layout
+      // {...config}
+    >
+      <Body>
+        <p>
+          you scored{" "}
+          <span>
+            {score}/{possibleScore}
+          </span>{" "}
+          possible questions{" "}
+        </p>
+        <p>Great job!</p>
+        <div>
+          <Button
+            onClick={newGame}
+            incomingStyles={newGameStyles}
+            config={{
+              whileHover: {
+                width: "7.5rem",
+                backgroundColor: elements.background,
+                color: elements.paragraph,
+              },
+            }}
+          >
+            new game
+          </Button>
+        </div>
         <Button
-          onClick={newGame}
-          incomingStyles={newGameStyles}
-          config={{
-            whileHover: {
-              width: "7.5rem",
-              backgroundColor: elements.background,
-              color: elements.paragraph,
-            },
-          }}
+          incomingStyles={buttonStyles}
+          onClick={close}
+          config={{whileHover: {width: "2.9rem", height: "2.9rem"}}}
         >
-          new game
+          ╳
         </Button>
-      </div>
-      <Button
-        incomingStyles={buttonStyles}
-        onClick={close}
-        config={{whileHover: {width: "2.9rem", height: "2.9rem"}}}
-      >
-        ╳
-      </Button>
+      </Body>
     </MessageWrapper>,
     document.body,
   )

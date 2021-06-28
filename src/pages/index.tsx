@@ -20,7 +20,7 @@ export default function Home() {
         <RoutesList>
           {quizPaths.map(({name, path}) => (
             <li key={name}>
-              <Link href={`/quiz/${path}`}>
+              <Link href={`quiz/${path}`}>
                 <a>{name}</a>
               </Link>
             </li>

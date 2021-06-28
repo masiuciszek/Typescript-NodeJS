@@ -3,14 +3,10 @@ import QuizWithState from "@/components/quiz/with-state"
 import QuizWithReducer from "@/components/quiz/with-reducer"
 import QuizWithXstate from "@/components/quiz/with-xstate"
 import QuizWithRecoil from "@/components/quiz/with-recoil"
-import {
-  WITH_RECOIL,
-  WITH_REDUCER,
-  WITH_STATE,
-  WITH_XSTATE,
-} from "@/utils/constants"
+import {WITH_RECOIL, WITH_REDUCER, WITH_STATE, WITH_XSTATE} from "@/utils/constants"
 import Seo from "@/components/common/seo"
 import Layout from "@/components/app/layout"
+import {Fragment} from "react"
 
 const END_POINTS = {
   WITH_STATE: "with-state",
@@ -42,10 +38,10 @@ const QuizItem = () => {
   const slug = router.query.slug as EndPointValues
 
   return (
-    <>
+    <Fragment>
       <Seo title={`quiz ${slug}`} />
       <Layout>{getQuizApp(slug)}</Layout>
-    </>
+    </Fragment>
   )
 }
 

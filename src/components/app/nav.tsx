@@ -10,9 +10,14 @@ interface Props {
 }
 
 const NavList = styled(motion.ul)`
-  background-color: ${elements.background};
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: ${elements.paragraph};
+  z-index: 3;
   padding: 1rem;
-  min-width: 24rem;
+  width: 40rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +31,7 @@ const NavList = styled(motion.ul)`
 
   a {
     text-decoration: none;
-    color: ${elements.paragraph};
+    color: ${elements.background};
     text-transform: uppercase;
   }
 `

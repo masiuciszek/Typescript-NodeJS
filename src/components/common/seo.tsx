@@ -21,7 +21,6 @@ const Seo: FC<Props> = ({title, description}) => {
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta name="description" content={`${META_DESCRIPTION} ${CMS_NAME}.`} />
       <meta property="og:site_name" content="Quiz games" />
 

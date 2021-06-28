@@ -9,6 +9,7 @@ import {css} from "@emotion/react"
 import {elements, elevations} from "@/styles/styled-record"
 import Dynamic from "next/dynamic"
 import {Quiz} from "./quiz"
+
 const GameDialog = Dynamic(() => import("../../common/game-dialog"))
 
 const titleStyles = css`

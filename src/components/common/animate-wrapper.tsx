@@ -23,22 +23,6 @@ const styles = css`
 `
 
 const AnimateWrapper: FC<Props> = ({children, isOn, incomingStyles, config}) => (
-  <AnimatePresence exitBeforeEnter>
-    {isOn && (
-      <motion.section
-        css={css`
-          ${styles};
-          ${incomingStyles};
-        `}
-        initial={{opacity: 0, x: -1000}}
-        animate={{opacity: 1, x: 0}}
-        exit={{opacity: 0, x: -1000}}
-        layout
-        {...config}
-      >
-        {children}
-      </motion.section>
-    )}
-  </AnimatePresence>
+  <AnimatePresence exitBeforeEnter>{isOn && children}</AnimatePresence>
 )
 export default AnimateWrapper

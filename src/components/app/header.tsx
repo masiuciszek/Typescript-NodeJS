@@ -11,6 +11,7 @@ const headerStyles = css`
   box-shadow: ${elevations.shadowLg};
   min-height: 8rem;
   border-bottom: 2px solid ${elements.stroke};
+  position: relative;
 `
 
 const cmdButtonStyles = css`
