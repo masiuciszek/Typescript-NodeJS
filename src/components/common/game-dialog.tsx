@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom"
 import {elements, elevations} from "@/styles/styled-record"
 import Button from "@/components/styled/button"
 import {css} from "@emotion/react"
@@ -54,8 +55,8 @@ const buttonStyles = css`
   background-color: ${elements.danger};
 `
 
-function GameDialog({score, possibleScore, close, newGame}: GameDialogProps) {
-  return (
+const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
+  ReactDOM.createPortal(
     <MessageWrapper>
       <p>
         you scored{" "}
@@ -77,8 +78,8 @@ function GameDialog({score, possibleScore, close, newGame}: GameDialogProps) {
       >
         ╳
       </Button>
-    </MessageWrapper>
+    </MessageWrapper>,
+    document.body,
   )
-}
 
 export default GameDialog

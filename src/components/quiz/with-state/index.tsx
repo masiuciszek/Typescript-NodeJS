@@ -4,10 +4,11 @@ import quizData from "../../../data/quiz-data.json"
 import Button from "@/components/styled/button"
 import produce from "immer"
 import AnimateWrapper from "@/components/common/animate-wrapper"
-import GameDialog from "@/components/common/game-dialog"
 import Title from "@/components/common/title"
 import {css} from "@emotion/react"
 import {elements, elevations} from "@/styles/styled-record"
+import Dynamic from "next/dynamic"
+const GameDialog = Dynamic(() => import("../../common/game-dialog"))
 
 const titleStyles = css`
   justify-content: center;
@@ -34,7 +35,6 @@ const QuizWrapper = styled.div`
   box-shadow: ${elevations.shadowLg};
   background-color: ${elements.blueishShadow};
   color: ${elements.background};
-
   .question {
     display: flex;
     flex: 1 0 50%;
@@ -42,7 +42,6 @@ const QuizWrapper = styled.div`
     justify-content: center;
   }
 `
-
 const AnswersList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -62,7 +61,6 @@ const AnswersList = styled.ul`
     }
   }
 `
-
 interface AnswerData {
   prefix: string
   isTrue: boolean

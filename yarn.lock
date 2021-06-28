@@ -3343,6 +3343,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-dom@^17.0.8":
+  version "17.0.8"
+  resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/react-dom/-/react-dom-17.0.8.tgz#3180de6d79bf53762001ad854e3ce49f36dd71fc"
+  integrity sha1-MYDebXm/U3YgAa2FTjzknzbdcfw=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-instantsearch-core@*":
   version "6.10.2"
   resolved "https://artifactory.etraveli.net/artifactory/api/npm/remote-npm/@types/react-instantsearch-core/-/react-instantsearch-core-6.10.2.tgz#634a887233ce76cc0f37a37f30909fe77a24d73b"
