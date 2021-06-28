@@ -8,6 +8,7 @@ import Title from "@/components/common/title"
 import {css} from "@emotion/react"
 import {elements, elevations} from "@/styles/styled-record"
 import Dynamic from "next/dynamic"
+import {Quiz} from "./quiz"
 const GameDialog = Dynamic(() => import("../../common/game-dialog"))
 
 const titleStyles = css`
@@ -25,10 +26,8 @@ const GameWrapper = styled.div`
   justify-content: center;
 `
 
-const QuizWrapper = styled.div`
+const BtnWrapper = styled.div`
   display: flex;
-  min-height: 14rem;
-  padding: 1rem;
   width: 100%;
   border: 1px solid ${elements.paragraph};
   border-radius: 4px;
@@ -60,6 +59,15 @@ const AnswersList = styled.ul`
       min-width: 12rem;
     }
   }
+
+  button {
+    margin-left: 1rem;
+  }
+`
+
+const showResultCss = css`
+  height: 3rem;
+  width: 8rem;
 `
 interface AnswerData {
   prefix: string
@@ -78,9 +86,11 @@ const QuizWithState = () => {
     if (isTrue) {
       setScore(produce((prevScore) => prevScore + 1))
     }
-    const xs = [...data]
-    xs.push({text, isTrue, prefix})
-    setData(xs)
+
+    setData((prev) => {
+      const xs = [...prev, {text, isTrue, prefix}]
+      return xs
+    })
     const nextQuestion = currentQuestion + 1
 
     if (nextQuestion < quizData.length) {
@@ -117,21 +127,39 @@ const QuizWithState = () => {
       <Title incomingStyles={titleStyles}>
         <h1>QuizWithState</h1>
       </Title>
-      <QuizWrapper>
-        <div className="question">
-          <p>{quizData[currentQuestion].question}</p>
-        </div>
-        <AnswersList>
-          {quizData[currentQuestion].answers.map(({prefix, text, isTrue}) => (
-            <li key={prefix}>
-              <Button disabled={isGameDone} onClick={() => handleClick({isTrue, text, prefix})}>
-                {text}
-              </Button>
-            </li>
-          ))}
-        </AnswersList>
-        {isGameDone && <Button onClick={() => setIsModalOpen(true)}> show game result </Button>}
-      </QuizWrapper>
+      <Quiz currentQuestion={currentQuestion} isGameDone={isGameDone} handleClick={handleClick} />
+      {isGameDone && (
+        <BtnWrapper>
+          <Button
+            config={{
+              whileHover: {
+                width: "8.1rem",
+                backgroundColor: elements.background,
+                color: elements.paragraph,
+              },
+            }}
+            incomingStyles={showResultCss}
+            onClick={() => setIsModalOpen(true)}
+          >
+            {" "}
+            show result{" "}
+          </Button>
+          <Button
+            config={{
+              whileHover: {
+                width: "8.1rem",
+                backgroundColor: elements.background,
+                color: elements.paragraph,
+              },
+            }}
+            incomingStyles={showResultCss}
+            onClick={newGame}
+          >
+            {" "}
+            new game
+          </Button>
+        </BtnWrapper>
+      )}
     </GameWrapper>
   )
 }

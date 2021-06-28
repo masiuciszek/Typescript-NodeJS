@@ -10,9 +10,7 @@ interface Props {
 }
 
 const Seo: FC<Props> = ({title, description}) => {
-  const META_DESCRIPTION = description
-    ? description
-    : "Next js app with different quiz versions"
+  const META_DESCRIPTION = description ? description : "Next js app with different quiz versions"
   const TITLE = title ? title : "React quiz app"
   return (
     <Head>
@@ -25,6 +23,14 @@ const Seo: FC<Props> = ({title, description}) => {
       <meta name="theme-color" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta name="description" content={`${META_DESCRIPTION} ${CMS_NAME}.`} />
+      <meta property="og:site_name" content="Quiz games" />
+
+      <meta name="twitter:title" content="Quiz games" />
+
+      <meta name="twitter:description" content="A collection of quiz apps" />
+      <meta name="twitter:image" content="/og-image.png" />
+      <meta name="twitter:creator" content="@masiu_cd" />
+      <meta name="twitter:site" content="@masiu_cd" />
       {/* <meta property="og:image" content={HOME_OG_IMAGE_URL} /> */}
     </Head>
   )

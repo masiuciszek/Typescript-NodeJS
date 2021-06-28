@@ -12,11 +12,12 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const BTN_MIN_WIDTH = 8
+const BTN_MIN_WIDTH = 4
 
 const styles = css`
   cursor: pointer;
   border-radius: 4px;
+  outline: none;
   font-size: 1rem;
   box-shadow: ${elevations.shadowM};
   border: 2px solid ${elements.stroke};
@@ -32,14 +33,7 @@ const styles = css`
   }
 `
 
-const Button: FC<ButtonProps> = ({
-  text,
-  incomingStyles,
-  children,
-  onClick,
-  config,
-  disabled,
-}) => {
+const Button: FC<ButtonProps> = ({text, incomingStyles, children, onClick, config, disabled}) => {
   return (
     <motion.button
       disabled={disabled || false}

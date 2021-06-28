@@ -54,6 +54,10 @@ const buttonStyles = css`
   padding: 0;
   background-color: ${elements.danger};
 `
+const newGameStyles = css`
+  height: 3rem;
+  width: 8rem;
+`
 
 const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
   ReactDOM.createPortal(
@@ -67,9 +71,19 @@ const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
       </p>
       <p>Great job!</p>
       <div>
-        <div className="btn-group">
-          <Button onClick={newGame}>new game</Button>
-        </div>
+        <Button
+          onClick={newGame}
+          incomingStyles={newGameStyles}
+          config={{
+            whileHover: {
+              width: "7.5rem",
+              backgroundColor: elements.background,
+              color: elements.paragraph,
+            },
+          }}
+        >
+          new game
+        </Button>
       </div>
       <Button
         incomingStyles={buttonStyles}
