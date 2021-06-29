@@ -11,7 +11,8 @@ const headerStyles = css`
   box-shadow: ${elevations.shadowLg};
   min-height: 8rem;
   border-bottom: 2px solid ${elements.stroke};
-  position: relative;
+  display: flex;
+  align-items: center;
 `
 
 const cmdButtonStyles = css`
@@ -30,7 +31,7 @@ const CMD_KEY_BOARD_KEY = "Meta"
 const K_KEY_BOARD_KEY = "k"
 
 export const Header = () => {
-  const {state: showConfig, toggle: toggleConfig} = useToggle()
+  const {state: showMenu, toggle: toggleConfig} = useToggle()
   const [_, cmdEventIsDown] = useKeyPress(CMD_KEY_BOARD_KEY)
   const [__, kEventIsDown] = useKeyPress(K_KEY_BOARD_KEY)
 
@@ -50,7 +51,7 @@ export const Header = () => {
       <Button onClick={toggleConfig} incomingStyles={cmdButtonStyles}>
         <Cmd /> <span>cmd+k</span>
       </Button>
-      <Navigation showConfig={showConfig} />
+      <Navigation showMenu={showMenu} />
     </header>
   )
 }
