@@ -13,7 +13,7 @@ const FooterStyles = styled.footer`
   align-content: center;
   box-shadow: ${elevations.shadowInner};
   grid-template-columns: 1fr;
-  border-top: 2px solid ${elements.stroke};
+
   @media (min-width: 700px) {
     grid-template-columns: 1fr 1fr;
   }

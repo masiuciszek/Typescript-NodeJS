@@ -2,13 +2,28 @@ import {elements, elevations} from "@/styles/styled-record"
 import {css} from "@emotion/react"
 import styled from "@emotion/styled"
 import {motion} from "framer-motion"
-import React from "react"
+import {RefObject, useRef} from "react"
 import ReactDOM from "react-dom"
 import paths from "../../data/routes.json"
 import socialMedia from "../../data/social-media.json"
 import Link from "next/link"
+import useClickOutSide from "@/hooks/click-outside"
 
-interface Props {}
+interface Props {
+  closeShowMenu: () => void
+}
+
+const Separator = () => (
+  <div
+    css={css`
+      height: 4px;
+      width: 100%;
+      background-color: ${elements.headline};
+      margin-top: auto;
+      margin-bottom: auto;
+    `}
+  />
+)
 
 const Body = styled(motion.div)`
   background-color: ${elements.background};
@@ -16,9 +31,15 @@ const Body = styled(motion.div)`
   border-radius: 4px;
   box-shadow: ${elevations.shadowLg};
   border: 1px solid ${elements.paragraph};
+  min-height: 11.5rem;
+  display: flex;
+  flex-direction: column;
 `
 
-const CmdCenter: React.FC<Props> = ({}) => {
+const CmdCenter: React.FC<Props> = ({closeShowMenu}) => {
+  const ref: RefObject<HTMLDivElement> = useRef(null)
+  useClickOutSide(ref, closeShowMenu)
+
   return ReactDOM.createPortal(
     <motion.div
       initial={{scale: 0.7, opacity: 0, x: "-50%"}}
@@ -28,6 +49,7 @@ const CmdCenter: React.FC<Props> = ({}) => {
       css={css`
         position: fixed;
         background-color: ${elements.lightBlueShadow};
+        overflow: hidden;
         height: 100%;
         width: 100%;
         top: 0;
@@ -38,19 +60,26 @@ const CmdCenter: React.FC<Props> = ({}) => {
       `}
     >
       <Body
+        ref={ref}
         initial={{scale: 0.7, opacity: 0}}
-        animate={{scale: 1, opacity: 1, transition: {duration: 0.2, delay: 0.2}}}
-        exit={{scale: 0.5, opacity: 0, transition: {duration: 0.15, delay: 0.2}}}
+        animate={{scale: 1, opacity: 1}}
+        exit={{scale: 0.5, opacity: 0}}
       >
         <ul
           className="navigation"
           css={css`
             min-width: 30rem;
             display: flex;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
+            li {
+              margin-bottom: 0.5rem;
+              a {
+                font-size: 1.3rem;
+              }
+            }
           `}
         >
           {paths.map(({name, path}) => (
@@ -68,13 +97,17 @@ const CmdCenter: React.FC<Props> = ({}) => {
             </motion.li>
           ))}
         </ul>
-        <hr />
+
+        <Separator />
+
         <ul
           className="social-media"
           css={css`
             display: flex;
             justify-content: space-between;
             padding: 1rem;
+            height: 3rem;
+            margin-top: auto;
           `}
         >
           {socialMedia.map(({name, url}) => (

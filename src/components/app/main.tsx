@@ -6,7 +6,7 @@ const mainStyles = css`
   flex-direction: column;
   max-width: 900px;
   margin: 0 auto;
-  min-height: 75vh;
+  min-height: calc(100vh - 340px);
 `
 
 export const Main: FC = ({children}) => {

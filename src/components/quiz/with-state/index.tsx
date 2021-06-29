@@ -30,11 +30,11 @@ const GameWrapper = styled.div`
 const BtnWrapper = styled.div`
   display: flex;
   width: 100%;
-  border: 1px solid ${elements.paragraph};
   border-radius: 4px;
   box-shadow: ${elevations.shadowLg};
-  background-color: ${elements.blueishShadow};
   color: ${elements.background};
+  padding: 1rem;
+  align-items: center;
   .question {
     display: flex;
     flex: 1 0 50%;
@@ -42,33 +42,11 @@ const BtnWrapper = styled.div`
     justify-content: center;
   }
 `
-const AnswersList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 50%;
-  padding: 0;
-  margin: 0;
-  li {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem;
-    button {
-      height: 3rem;
-      min-width: 12rem;
-    }
-  }
-
-  button {
-    margin-left: 1rem;
-  }
-`
 
 const showResultCss = css`
-  height: 3rem;
+  height: 2rem;
   width: 8rem;
+  margin-left: 1rem;
 `
 interface AnswerData {
   prefix: string

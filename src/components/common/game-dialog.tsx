@@ -1,9 +1,11 @@
 import ReactDOM from "react-dom"
-import {elements, elevations} from "@/styles/styled-record"
+import {elements} from "@/styles/styled-record"
 import Button from "@/components/styled/button"
 import {css} from "@emotion/react"
 import styled from "@emotion/styled"
 import {motion} from "framer-motion"
+import useClickOutSide from "@/hooks/click-outside"
+import {RefObject, useRef} from "react"
 
 interface GameDialogProps {
   score: number
@@ -56,16 +58,17 @@ const newGameStyles = css`
   width: 8rem;
 `
 
-const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
-  ReactDOM.createPortal(
+const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) => {
+  const ref: RefObject<HTMLDivElement> = useRef(null)
+  useClickOutSide(ref, close)
+  return ReactDOM.createPortal(
     <MessageWrapper
       initial={{opacity: 0, x: -1000}}
       animate={{opacity: 1, x: 0}}
       exit={{opacity: 0, x: -1000}}
       layout
-      // {...config}
     >
-      <Body>
+      <Body ref={ref}>
         <p>
           you scored{" "}
           <span>
@@ -100,5 +103,6 @@ const GameDialog = ({score, possibleScore, close, newGame}: GameDialogProps) =>
     </MessageWrapper>,
     document.body,
   )
+}
 
 export default GameDialog

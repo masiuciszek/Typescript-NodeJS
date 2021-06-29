@@ -11,6 +11,7 @@ import CmdCenter from "./cmd-center"
 
 interface Props {
   showMenu: boolean
+  closeShowMenu: () => void
 }
 
 const NavList = styled(motion.ul)`
@@ -31,7 +32,7 @@ const NavList = styled(motion.ul)`
   }
 `
 
-export const Navigation = ({showMenu}: Props) => {
+export const Navigation = ({showMenu, closeShowMenu}: Props) => {
   const matches = useMediaQuery("(min-width:950px)")
   return (
     <nav
@@ -65,7 +66,7 @@ export const Navigation = ({showMenu}: Props) => {
       </AnimateWrapper>
 
       <AnimateWrapper isOn={showMenu}>
-        <CmdCenter />
+        <CmdCenter closeShowMenu={closeShowMenu} />
       </AnimateWrapper>
     </nav>
   )

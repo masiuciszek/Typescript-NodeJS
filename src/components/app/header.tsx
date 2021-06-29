@@ -31,14 +31,14 @@ const CMD_KEY_BOARD_KEY = "Meta"
 const K_KEY_BOARD_KEY = "k"
 
 export const Header = () => {
-  const {state: showMenu, toggle: toggleConfig} = useToggle()
+  const {state: showMenu, toggle: toggleShowMenu, toFalse: closeShowMenu} = useToggle()
   const [_, cmdEventIsDown] = useKeyPress(CMD_KEY_BOARD_KEY)
   const [__, kEventIsDown] = useKeyPress(K_KEY_BOARD_KEY)
 
   const predicate = cmdEventIsDown && kEventIsDown
   useEffect(() => {
     if (predicate) {
-      toggleConfig()
+      toggleShowMenu()
     }
   }, [kEventIsDown])
 
@@ -48,10 +48,10 @@ export const Header = () => {
         ${headerStyles};
       `}
     >
-      <Button onClick={toggleConfig} incomingStyles={cmdButtonStyles}>
+      <Button onClick={toggleShowMenu} incomingStyles={cmdButtonStyles}>
         <Cmd /> <span>cmd+k</span>
       </Button>
-      <Navigation showMenu={showMenu} />
+      <Navigation closeShowMenu={closeShowMenu} showMenu={showMenu} />
     </header>
   )
 }
